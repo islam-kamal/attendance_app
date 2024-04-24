@@ -1,5 +1,5 @@
 import 'package:attendance_app_code/homescreen.dart';
-import 'package:attendance_app_code/loginscreen.dart';
+import 'package:attendance_app_code/Features/Login/presentation/pages/loginscreen.dart';
 import 'package:attendance_app_code/main.dart';
 import 'package:attendance_app_code/model/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -215,8 +215,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child:  IconButton(onPressed: () async {
                   sharedPreferences = await SharedPreferences.getInstance();
                   sharedPreferences.remove('employeeId');
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => MyApp())
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => MyApp(
+
+                      ))
                   );
                 },
                     icon: Icon(Icons.logout)))

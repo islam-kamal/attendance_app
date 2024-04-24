@@ -1,3 +1,4 @@
+import 'package:attendance_app_code/Features/Notifications/presentation/pages/notifications_screen.dart';
 import 'package:attendance_app_code/calendarscreen.dart';
 import 'package:attendance_app_code/model/user.dart';
 import 'package:attendance_app_code/profilescreen.dart';
@@ -28,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
     FontAwesomeIcons.check,
     FontAwesomeIcons.mapLocation,
     FontAwesomeIcons.user,
-
+    FontAwesomeIcons.newspaper,
   ];
 
   @override
@@ -107,6 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
           new TodayScreen(),
           new EmployeeScheduleScreen(),
           new ProfileScreen(),
+          new NotificationsScreen()
 
 
         ],
