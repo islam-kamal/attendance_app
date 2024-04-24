@@ -353,7 +353,7 @@ class _TodayScreenState extends State<TodayScreen> {
               margin: const EdgeInsets.only(top: 24, bottom: 12),
               child: Builder(
                 builder: (context) {
-                  final GlobalKey<SlideActionState> key = GlobalKey();
+                   GlobalKey<SlideActionState> key = GlobalKey();
 
                   return SlideAction(
                     text: checkIn == "--/--" ? "Slide to Check In" : "Slide to Check Out",
