@@ -61,7 +61,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                       final month = await showMonthYearPicker(
                         context: context,
                         initialDate: DateTime.now(),
-                        firstDate: DateTime(2022),
+                        firstDate: DateTime(1900),
                         lastDate: DateTime(2099),
                         builder: (context, child) {
                           return Theme(
@@ -99,13 +99,9 @@ class _CalendarScreenState extends State<CalendarScreen> {
                         });
                       }
                     },
-                    child: Text(
-                      "Pick a Month",
-                      style: TextStyle(
-                        fontFamily: "NexaBold",
-                        fontSize: screenWidth / 18,
-                      ),
-                    ),
+                    child: Icon(Icons.calendar_month)
+
+
                   ),
                 ),
               ],
