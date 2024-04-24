@@ -477,7 +477,8 @@ class _TodayScreenState extends State<TodayScreen> {
                   );
                 },
               ),
-            ) : Container(
+            )
+                : Container(
               margin: const EdgeInsets.only(top: 32, bottom: 32),
               child: Text(
                 "You have completed this day!",
@@ -491,7 +492,7 @@ class _TodayScreenState extends State<TodayScreen> {
             location != " " ? Text(
               "Location: " + location,
             ) : const SizedBox(),
-            GestureDetector(
+          /*  GestureDetector(
               onTap: () {
                 scanQRandCheck();
               },
@@ -542,7 +543,7 @@ class _TodayScreenState extends State<TodayScreen> {
                   ],
                 ),
               ),
-            ),
+            ),*/
           ],
         ),
       )

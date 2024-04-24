@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'model/user.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -97,7 +99,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           sharedPreferences = await SharedPreferences.getInstance();
 
                           sharedPreferences.setString('employeeId', id).then((_) {
-                            Navigator.pushReplacement(context,
+                            User.employeeId = id;
+                                Navigator.pushReplacement(context,
                                 MaterialPageRoute(builder: (context) => HomeScreen())
                             );
                           });

@@ -1,7 +1,7 @@
 import 'package:attendance_app_code/calendarscreen.dart';
 import 'package:attendance_app_code/model/user.dart';
 import 'package:attendance_app_code/profilescreen.dart';
-import 'package:attendance_app_code/services/company_zone_location.dart';
+import 'package:attendance_app_code/services/employee_schedule_screen.dart';
 import 'package:attendance_app_code/services/location_service.dart';
 import 'package:attendance_app_code/todayscreen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -26,8 +26,9 @@ class _HomeScreenState extends State<HomeScreen> {
   List<IconData> navigationIcons = [
     FontAwesomeIcons.calendarAlt,
     FontAwesomeIcons.check,
+    FontAwesomeIcons.mapLocation,
     FontAwesomeIcons.user,
-    FontAwesomeIcons.mapLocation
+
   ];
 
   @override
@@ -42,7 +43,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _getCredentials() async {
     try {
+      print("_getCredentials User.id : ${User.id}");
       DocumentSnapshot doc = await FirebaseFirestore.instance.collection("Employee").doc(User.id).get();
+      print("_doc['firstName'] : ${doc['firstName']}");
       setState(() {
         User.canEdit = doc['canEdit'];
         User.firstName = doc['firstName'];
@@ -56,7 +59,9 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _getProfilePic() async {
+    print("_getProfilePic User.id : ${User.id}");
     DocumentSnapshot doc = await FirebaseFirestore.instance.collection("Employee").doc(User.id).get();
+    print("_doc['profilePic'] : ${doc['profilePic']}");
     setState(() {
       User.profilePicLink = doc['profilePic'];
     });
@@ -100,8 +105,10 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           new CalendarScreen(),
           new TodayScreen(),
+          new EmployeeScheduleScreen(),
           new ProfileScreen(),
-          new LocationCheckScreen()
+
+
         ],
       ),
       bottomNavigationBar: Container(
