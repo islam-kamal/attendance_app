@@ -1,5 +1,6 @@
 
 import 'package:attendance_app_code/Base/common/theme.dart';
+import 'package:attendance_app_code/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,6 +9,9 @@ import 'package:localize_and_translate/localize_and_translate.dart';
 import 'package:provider/provider.dart';
 
 class Shared {
+
+  static final  double width = MediaQuery.of(navigatorKey.currentContext!).size.width;
+  static final  double height = MediaQuery.of(navigatorKey.currentContext!).size.height;
 
   static showLoadingDialog({required BuildContext context}) {
     showDialog(
@@ -44,5 +48,17 @@ class Shared {
     );
   }
 
+  static void showSnackBarView({ String? message, String? backend_message,
+    bool? error_status}) {
 
+    var snackBar = SnackBar(
+      content: Text( backend_message?? LocalizeAndTranslate.translate(message!),
+        style: TextStyle(color: error_status!? kWhiteColor :kGreenColor,),
+        textDirection: LocalizeAndTranslate.getLanguageCode() == 'en'? TextDirection.ltr : TextDirection.rtl,
+      ),
+      backgroundColor: error_status? kRedColor :kWhiteColor,
+    );
+    // Step 3
+    ScaffoldMessenger.of(navigatorKey.currentContext!).showSnackBar(snackBar);
+  }
 }

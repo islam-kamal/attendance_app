@@ -149,6 +149,7 @@ class _EmployeeScheduleScreenState extends State<EmployeeScheduleScreen> {
                                 ],
                                 columnSpacing: screenWidth / 25,
                                 sortAscending: true,
+
                                 rows: [
                                   DataRow(
 
