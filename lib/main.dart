@@ -3,9 +3,9 @@ import 'dart:io';
 import 'package:attendance_app_code/Base/Notifications/local_notification_service.dart';
 import 'package:attendance_app_code/Base/common/shared_preference_manger.dart';
 import 'package:attendance_app_code/Base/database/notifications_db.dart';
+import 'package:attendance_app_code/Features/BottomNavigationBar/bottom_navigation_bar_widget.dart';
 import 'package:attendance_app_code/Features/Notifications/presentation/pages/notifications_screen.dart';
 import 'package:attendance_app_code/homescreen.dart';
-import 'package:attendance_app_code/Features/Login/presentation/pages/loginscreen.dart';
 import 'package:attendance_app_code/model/user.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -16,6 +16,8 @@ import 'package:localize_and_translate/localize_and_translate.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+
+import 'Features/Login/presentation/pages/login_screen.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -43,18 +45,6 @@ class MyApp extends StatefulWidget{
     // TODO: implement createState
     return _MyAppState();
   }
-
-  static void setLocale(BuildContext context, Locale newLocale) {
-    _MyAppState? state = context.findAncestorStateOfType();
-
-    app_langauge = newLocale.languageCode;
-    state?.setState(() => state.local = newLocale);
-  }
-
-  static void restartApp(BuildContext context) {
-    context.findAncestorStateOfType<_MyAppState>()?.restartApp();
-  }
-
 }
 
 class _MyAppState extends State<MyApp> {
@@ -87,14 +77,14 @@ class _MyAppState extends State<MyApp> {
     _fcmConfigure(context);
 
   }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<SharedPreferences>(
         future: SharedPreferences.getInstance(),
         builder: (context, snapshot) {
     return MaterialApp(
-
-    debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: false,
     navigatorKey: navigatorKey,
     title: 'Flutter Demo',
     theme: ThemeData(
@@ -235,9 +225,8 @@ class _AuthCheckState extends State<AuthCheck> {
 
   @override
   Widget build(BuildContext context) {
-    return  userAvailable ? const HomeScreen() : const LoginScreen();
+    return  userAvailable ?  IndexScreen() : const LoginScreen();
   }
-
 
   void _getCurrentUser() async {
     sharedPreferences = await SharedPreferences.getInstance();
@@ -256,8 +245,6 @@ class _AuthCheckState extends State<AuthCheck> {
     }
   }
 
-
-
 }
 
 class MyHttpOverrides extends HttpOverrides{
@@ -267,6 +254,7 @@ class MyHttpOverrides extends HttpOverrides{
       ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
   }
 }
+
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 @pragma('vm:entry-point')
@@ -283,7 +271,6 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
               builder: (BuildContext context) =>NotificationsScreen()
           ));
           break;
-
       }
 
   }

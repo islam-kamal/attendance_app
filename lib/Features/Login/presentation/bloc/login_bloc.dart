@@ -1,7 +1,10 @@
 import 'dart:async';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../../model/user.dart';
 import 'Helper/app_event.dart';
 import 'Helper/app_state.dart';
 import '../../../../Base/validator.dart';
@@ -12,33 +15,39 @@ class LoginBloc extends Bloc<AppEvent,AppState> with Validator{
     on<loginClickEvent>(_onSignUpClick);
   }
 
-
-
-
-
-
   Future<void> _onSignUpClick(loginClickEvent event , Emitter<AppState> emit)async{
     emit( Loading());
-    var response;
-/*     response = await AuthenticationRepository.signUp(
-        userEductionEntity: event.userEductionEntity
-    );*/
-    if(response.httpStatusCode == 200 || response.httpStatusCode == 201){
 
+    QuerySnapshot snap = await FirebaseFirestore.instance
+        .collection("Employee").where('id', isEqualTo: event.username).get();
 
-      emit( Done(model: response));
+    try {
 
-    }else{
-      emit( ErrorLoading(model: response,message: response.message));
+      if(event.password == snap.docs[0]['password']) {
+        SharedPreferences   sharedPreferences = await SharedPreferences.getInstance();
+
+        sharedPreferences.setString('employeeId', event.username).whenComplete((){
+          User.employeeId = event.username;
+
+        });
+        emit(Done());
+      } else {
+       emit(ErrorLoading());
+      }
+    } catch(e) {
+      emit(ErrorLoading(
+        message: e.toString()
+      ));
     }
+  }
 
   }
 
 
 
 
-}
 
-LoginBloc signUpBloc = new LoginBloc();
+
+LoginBloc loginBloc = new LoginBloc();
 
 
