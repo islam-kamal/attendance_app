@@ -5,7 +5,7 @@ import 'package:attendance_app_code/Base/common/shared_preference_manger.dart';
 import 'package:attendance_app_code/Base/database/notifications_db.dart';
 import 'package:attendance_app_code/Features/BottomNavigationBar/bottom_navigation_bar_widget.dart';
 import 'package:attendance_app_code/Features/Notifications/presentation/pages/notifications_screen.dart';
-import 'package:attendance_app_code/homescreen.dart';
+import 'package:attendance_app_code/Features/Home/presentation/pages/homescreen.dart';
 import 'package:attendance_app_code/model/user.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -89,7 +89,7 @@ class _MyAppState extends State<MyApp> {
     title: 'Flutter Demo',
     theme: ThemeData(
     primarySwatch: Colors.blue,
-    fontFamily: 'DINNextLTArabic'
+    fontFamily: 'Cairo'
     ),
     home: LocalizedApp(
     child:const KeyboardVisibilityProvider(
@@ -140,8 +140,8 @@ class _MyAppState extends State<MyApp> {
         final routeMessage = initialMessage.data['Type'];
         switch (routeMessage) {
           case "Notification":
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (BuildContext context) =>NotificationsScreen()
+            Navigator.of(navigatorKey.currentContext!).push(MaterialPageRoute(
+                builder: (BuildContext context) =>IndexScreen(index: 1,)
             ));
             break;
         }
@@ -164,7 +164,7 @@ class _MyAppState extends State<MyApp> {
         switch (routeMessage) {
           case "Notification":
             Navigator.of(navigatorKey.currentContext!).push(MaterialPageRoute(
-                builder: (BuildContext context) =>NotificationsScreen()
+                builder: (BuildContext context) =>IndexScreen(index: 1,)
             ));
             break;
         }
@@ -177,8 +177,8 @@ class _MyAppState extends State<MyApp> {
         final routeMessage = message.data['Type'];
         switch (routeMessage) {
           case "Notification":
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (BuildContext context) =>NotificationsScreen()
+            Navigator.of(navigatorKey.currentContext!).push(MaterialPageRoute(
+                builder: (BuildContext context) =>IndexScreen(index: 1,)
             ));
             break;
         }
@@ -193,8 +193,8 @@ class _MyAppState extends State<MyApp> {
         final routeMessage = message.data['Type'];
         switch (routeMessage) {
           case "Notification":
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (BuildContext context) =>NotificationsScreen()
+            Navigator.of(navigatorKey.currentContext!).push(MaterialPageRoute(
+                builder: (BuildContext context) =>IndexScreen(index: 1,)
             ));
             break;
         }
@@ -225,7 +225,7 @@ class _AuthCheckState extends State<AuthCheck> {
 
   @override
   Widget build(BuildContext context) {
-    return  userAvailable ?  IndexScreen() : const LoginScreen();
+    return  userAvailable ?  IndexScreen(index: 0,) : const LoginScreen();
   }
 
   void _getCurrentUser() async {
@@ -268,7 +268,7 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
       switch (routeMessage) {
         case "Notification":
           Navigator.of(navigatorKey.currentContext!).push(MaterialPageRoute(
-              builder: (BuildContext context) =>NotificationsScreen()
+              builder: (BuildContext context) =>IndexScreen(index: 1,)
           ));
           break;
       }

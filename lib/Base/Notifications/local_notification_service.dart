@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-import '../../homescreen.dart';
+import '../../Features/Home/presentation/pages/homescreen.dart';
 import '../common/shared.dart';
 
 class LocalNotificationService {

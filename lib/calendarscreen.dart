@@ -120,7 +120,8 @@ class _CalendarScreenState extends State<CalendarScreen> {
                     return ListView.builder(
                       itemCount: snap.length,
                       itemBuilder: (context, index) {
-                        return DateFormat('MMMM').format(snap[index]['date'].toDate()) == _month ? Container(
+                        return DateFormat('MMMM').format(snap[index]['date'].toDate()) == _month
+                            ? Container(
                           margin: EdgeInsets.only(top: index > 0 ? 12 : 0, left: 6, right: 6),
                           height: 150,
                           decoration: const BoxDecoration(

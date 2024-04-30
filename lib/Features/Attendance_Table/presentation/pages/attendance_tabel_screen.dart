@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:attendance_app_code/model/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart' as intl;
+import 'package:simple_month_year_picker/simple_month_year_picker.dart';
 
 import '../../../../Base/common/shared.dart';
 import '../../../../Base/common/theme.dart';
@@ -20,7 +22,9 @@ class _AttendanceTableScreenState extends State<AttendanceTableScreen> {
   Color primary = const Color(0xffeef444c);
 
   Stream<QuerySnapshot<Object?>>? employee_schedule_stream;
+  String selected_month = intl.DateFormat('MMMM').format(DateTime.now());
 
+   String year = intl.DateFormat('yyyy').format(DateTime.now());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,16 +37,74 @@ class _AttendanceTableScreenState extends State<AttendanceTableScreen> {
           child: SingleChildScrollView(
             padding: const EdgeInsets.all(5),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                DataSelectionWidget(),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  child:   Container(
+                    alignment: Alignment.centerRight,
+                    margin: const EdgeInsets.only(top: 12),
 
-                //  AttendanceTableHeaderWidget(),
+                    child: GestureDetector(
+                      onTap: () async {
+                        final selectedDate =
+                        await SimpleMonthYearPicker.showMonthYearPickerDialog(
+                            context: context,
+                            titleTextStyle: TextStyle(
+                                color: kBlackColor
+                            ),
+                            selectionColor: kGreenColor,
+                            monthTextStyle: TextStyle(),
+                            yearTextStyle: TextStyle(),
+                            disableFuture:
+                            true // This will disable future years. it is false by default.
+                        );
+                        setState(() {
+                          // Use the selected date as needed
+                          print('Selected date: $selectedDate');
+                          selected_month = intl.DateFormat('MMMM').format(selectedDate);
+                          year = intl.DateFormat('yyyy').format(selectedDate);
+                        });
+                      },
+                      child:   Material(
+                          elevation: 5,borderRadius: BorderRadius.circular(10),
+                          child: Container(
+                              alignment: Alignment.center,
+                              height: Shared.width * 0.12,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                border: Border.all(color: kWhiteColor),
+                              ),
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: Shared.width * 0.15),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Icon(Icons.arrow_back_ios,
+                                      color: kGreenColor,size: 25,),
+
+                                    Text("${selected_month}  ${year}",
+                                      style: TextStyle(color: kGreenColor,fontSize: 20
+                                          ,fontWeight: FontWeight.bold),),
+                                    Icon(Icons.arrow_forward_ios,
+                                      color: kGreenColor,size: 25,),
+                                  ],
+                                ),
+                              )
+                          )),
+
+
+                    ),
+                  ),
+
+                ),
 
                 StreamBuilder<QuerySnapshot>(
                   stream: FirebaseFirestore.instance
                       .collection("Employee")
                       .doc(User.id)
-                      .collection("employee_schedule")
+                      .collection("Record")
                       .snapshots(),
                   builder: (BuildContext context,
                       AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -50,19 +112,24 @@ class _AttendanceTableScreenState extends State<AttendanceTableScreen> {
                       final snap = snapshot.data!.docs;
                       print("snap : ${snap}");
                       if (snap.isNotEmpty) {
-                        return Padding(
+                       return  Padding(
                             padding: EdgeInsets.all(10),
                             child: Material(
                                 elevation: 5,
                                 borderRadius: BorderRadius.circular(10),
                                 child: Container(
-                                    alignment: Alignment.center,
+                                  margin: EdgeInsets.symmetric(horizontal: 5),
+                                   alignment: Alignment.center,
                                     height: Shared.width * 0.12,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
                                       border: Border.all(color: kWhiteColor),
                                     ),
+
                                     child: DataTable(
+                                        columnSpacing:  Shared.width * 0.05,
+
+                                        horizontalMargin:0,
                                         columns: [
                                           DataColumn(
                                             label: Expanded(
@@ -70,9 +137,10 @@ class _AttendanceTableScreenState extends State<AttendanceTableScreen> {
                                                 'التاريخ',
                                                 style: TextStyle(
                                                     fontWeight:
-                                                        FontWeight.bold),
+                                                        FontWeight.bold,),
+                                                textAlign: TextAlign.center,
                                               ),
-                                            ),
+                                            ) ,
                                           ),
                                           DataColumn(
                                             label: Expanded(
@@ -80,6 +148,7 @@ class _AttendanceTableScreenState extends State<AttendanceTableScreen> {
                                               'تسجيل الوصول',
                                               style: TextStyle(
                                                   fontWeight: FontWeight.bold),
+                                                  textAlign: TextAlign.center,
                                             )),
                                           ),
                                           DataColumn(
@@ -88,6 +157,7 @@ class _AttendanceTableScreenState extends State<AttendanceTableScreen> {
                                               'تسجيل المغادرة',
                                               style: TextStyle(
                                                   fontWeight: FontWeight.bold),
+                                                  textAlign: TextAlign.center,
                                             )),
                                           ),
                                           DataColumn(
@@ -96,33 +166,62 @@ class _AttendanceTableScreenState extends State<AttendanceTableScreen> {
                                               'الحالة',
                                               style: TextStyle(
                                                   fontWeight: FontWeight.bold),
+                                                  textAlign: TextAlign.center,
                                             )),
                                           ),
                                         ],
                                         sortAscending: true,
                                         rows: [
-
                                           ...List.generate(
                                               growable: true,
                                               snap.length, (index) {
-                                            return DataRow(
+
+                                            return  intl.DateFormat('MMMM').format(snap[index]['date'].toDate()) == selected_month ?
+                                             DataRow(
                                               cells: [
-                                                DataCell( Text(
-                                                        snap[index]['day'])),
-                                                DataCell( Text(snap[index]
-                                                        ['branchName'])),
-                                                DataCell(Text(
-                                                      snap[index]['address']
-                                                          ['name'],
-                                                    )),
-                                                DataCell( Text(
-                                                      snap[index]['address']
-                                                          ['name'],
-                                                    )),
+                                                DataCell(
+                                                    Center(child: Text(
+                                                  intl.DateFormat('EE\ndd').format(snap[index]['date'].toDate()),))
+                                                ),
+
+                                                DataCell(Center(child: Text(
+                                                  snap[index]['checkIn'],
+                                                  ))
+                                                ),
+
+                                                DataCell(Center(child: Text(
+                                                  snap[index]['checkOut'],
+
+                                            )
+                                                )),
+
+                                                DataCell( Container(
+                                                  decoration: BoxDecoration(
+                                                    borderRadius: BorderRadius.circular(10),
+                                                    color: snap[index]['status'].toString()== "متاخر" ? kLightRed : kLightGreenColor
+                                                  ),
+                                                  height: 30,
+                                                  child: Padding(
+                                                    padding:  EdgeInsets.symmetric(vertical: 0,horizontal: 20),
+                                                    child:Center(child: Text(
+                                                      snap[index]['status'],
+                                              softWrap: true,
+                                                    )  ),
+                                                      ),
+
+                                                )
+                                                ),
                                               ],
-                                            );
+                                            )
+                                                : DataRow(cells: [
+                                              DataCell(Container()),
+                                              DataCell(Container()),
+                                              DataCell(Container()),
+                                              DataCell(Container())
+                                            ]);
                                           })
-                                        ]))));
+                                        ]))
+                            ));
                       } else {
                         return Center(
                             child: Padding(
@@ -160,4 +259,5 @@ class _AttendanceTableScreenState extends State<AttendanceTableScreen> {
           ),
         ));
   }
+
 }

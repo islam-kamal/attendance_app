@@ -1,6 +1,6 @@
 import 'package:attendance_app_code/Features/BottomNavigationBar/bottom_navigation_bar_widget.dart';
 import 'package:attendance_app_code/Features/Login/presentation/bloc/login_bloc.dart';
-import 'package:attendance_app_code/homescreen.dart';
+import 'package:attendance_app_code/Features/Home/presentation/pages/homescreen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,7 +33,7 @@ class _FormLoginViewState extends State<FormLoginView> {
         }
         else if(state is Done){
           Shared.dismissDialog(context: context);
-          customAnimatedPushNavigation(context, IndexScreen());
+          customAnimatedPushNavigation(context, IndexScreen(index: 0,));
 
         }
         else if(state is ErrorLoading){

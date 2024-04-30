@@ -123,10 +123,10 @@ flutter:
   fonts:
     - family: NexaBold
       fonts:
-        - asset: assets/fonts/NexaBold.otf
+        - asset: assets/fonts/Cairo-VariableFont_slnt,wght.ttf
     - family: NexaRegular
       fonts:
-        - asset: assets/fonts/NexaRegular.otf
+        - asset: assets/fonts/Cairo-VariableFont_slnt,wght.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

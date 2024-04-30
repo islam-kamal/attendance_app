@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:intl/intl.dart' as intl;
 import 'package:localize_and_translate/localize_and_translate.dart';
 import 'package:provider/provider.dart';
 
@@ -12,6 +13,8 @@ class Shared {
 
   static final  double width = MediaQuery.of(navigatorKey.currentContext!).size.width;
   static final  double height = MediaQuery.of(navigatorKey.currentContext!).size.height;
+
+
 
   static showLoadingDialog({required BuildContext context}) {
     showDialog(
