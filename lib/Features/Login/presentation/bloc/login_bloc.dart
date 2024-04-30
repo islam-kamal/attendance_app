@@ -18,6 +18,7 @@ class LoginBloc extends Bloc<AppEvent,AppState> with Validator{
   Future<void> _onSignUpClick(loginClickEvent event , Emitter<AppState> emit)async{
     emit( Loading());
 
+    print("event.username : ${event.username}");
     QuerySnapshot snap = await FirebaseFirestore.instance
         .collection("Employee").where('id', isEqualTo: event.username).get();
 
@@ -25,11 +26,11 @@ class LoginBloc extends Bloc<AppEvent,AppState> with Validator{
 
       if(event.password == snap.docs[0]['password']) {
         SharedPreferences   sharedPreferences = await SharedPreferences.getInstance();
-
-        sharedPreferences.setString('employeeId', event.username).whenComplete((){
+        User.employeeId = event.username;
+        sharedPreferences.setString('employeeId', event.username);/*.whenComplete((){
           User.employeeId = event.username;
 
-        });
+        });*/
         emit(Done());
       } else {
        emit(ErrorLoading());

@@ -17,20 +17,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  double screenHeight = 0;
-  double screenWidth = 0;
-
-  Color primary = const Color(0xffeef444c);
-
-  int currentIndex = 1;
-
-  List<IconData> navigationIcons = [
-    FontAwesomeIcons.calendarAlt,
-    FontAwesomeIcons.check,
-    FontAwesomeIcons.mapLocation,
-    FontAwesomeIcons.user,
-    FontAwesomeIcons.newspaper,
-  ];
 
   @override
   void initState() {
@@ -38,7 +24,6 @@ class _HomeScreenState extends State<HomeScreen> {
     _startLocationService();
     getId().then((value) {
       _getCredentials();
-  //    _getProfilePic();
     });
   }
 
@@ -59,14 +44,6 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
-  void _getProfilePic() async {
-    print("_getProfilePic User.id : ${User.id}");
-    DocumentSnapshot doc = await FirebaseFirestore.instance.collection("Employee").doc(User.id).get();
-    print("_doc['profilePic'] : ${doc['profilePic']}");
-    setState(() {
-      User.profilePicLink = doc['profilePic'];
-    });
-  }
 
   void _startLocationService() async {
     LocationService().initialize();
@@ -97,8 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    screenHeight = MediaQuery.of(context).size.height;
-    screenWidth = MediaQuery.of(context).size.width;
+
 
     return Scaffold(
       body: new TodayScreen()

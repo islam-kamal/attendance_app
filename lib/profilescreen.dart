@@ -1,4 +1,4 @@
-import 'package:attendance_app_code/homescreen.dart';
+import 'package:attendance_app_code/Features/Home/presentation/pages/homescreen.dart';
 import 'package:attendance_app_code/main.dart';
 import 'package:attendance_app_code/model/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';

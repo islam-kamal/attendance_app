@@ -18,19 +18,38 @@ class NotificationsScreen extends StatefulWidget {
 }
 
 class _NotificationsScreenState extends State<NotificationsScreen> {
-  List<NotificationElement> notifications = [];
+  List<NotificationElement> notifications = [
+    NotificationElement(
+      header: 'تم خصم يوم',
+      description: 'نظرا لتغيبك عن العمل بدون اذن مسبق ',
+      timeStamp: 'منذ ساعة',
+
+    ),
+    NotificationElement(
+      header: 'تم ترقيتك لدرجة مدير',
+      description: 'نظرا لتفانيك فى ادى العمل ',
+      timeStamp: 'منذ ساعتين',
+
+    ),
+
+  ];
 
   @override
   void initState() {
     super.initState();
-    _loadNotifications();
+
   }
 
   Future<void> _loadNotifications() async {
     List<NotificationElement> savedNotifications = await NotificationsDatabase.getSavedNotifications();
     setState(() {
-      notifications = savedNotifications;
+      notifications.addAll( savedNotifications);
     });
+  }
+  @override
+  void didChangeDependencies() {
+    _loadNotifications();
+    super.didChangeDependencies();
   }
 
   @override
@@ -47,14 +66,12 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
         child: ListView.builder(
           itemCount: notifications.length,
           itemBuilder: (BuildContext context, int index) {
-
             return NotificationElementWidget(
               header: notifications[index].header ,
               description: notifications[index].description,
               timeStamp:notifications[index].timeStamp ,
 
             );
-
           },
         ),
       ),

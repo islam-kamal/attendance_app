@@ -3,7 +3,7 @@ import 'package:attendance_app_code/Features/Attendance_Table/presentation/pages
 import 'package:attendance_app_code/Features/DiscountList/presentation/pages/discount_list_screen.dart';
 import 'package:attendance_app_code/Features/Notifications/presentation/pages/notifications_screen.dart';
 import 'package:attendance_app_code/Features/Whatsapp_Chatbot/whatsapp_chatbot_screen.dart';
-import 'package:attendance_app_code/homescreen.dart';
+import 'package:attendance_app_code/Features/Home/presentation/pages/homescreen.dart';
 import 'package:attendance_app_code/profilescreen.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
@@ -13,16 +13,23 @@ import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 
 class IndexScreen extends StatefulWidget {
+  int index;
+  IndexScreen({ required this.index});
   @override
   State<IndexScreen> createState() => _IndexScreenState();
 }
 
 class _IndexScreenState extends State<IndexScreen> {
-   int current_index = 0;
+  int? current_index ;
+  @override
+  void initState() {
+     current_index = widget.index;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    PersistentTabController _controller = PersistentTabController(initialIndex: 0);
+    PersistentTabController _controller = PersistentTabController(initialIndex: current_index!);
 
     List<PersistentBottomNavBarItem> _navBarsItems = [
       PersistentBottomNavBarItem(
@@ -102,8 +109,8 @@ class _IndexScreenState extends State<IndexScreen> {
       return [
         HomeScreen(),
         NotificationsScreen(),
-        DiscountListScreen(),
         WhatsappChatbotScreen(),
+        DiscountListScreen(),
         AttendanceTableScreen(),
       ];
     }
