@@ -77,7 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
 
     return Scaffold(
-      body: new TodayScreen()
+      body: new HomeView()
     );
   }
 }
