@@ -14,7 +14,7 @@ class LocalNotificationService {
   static void initialize(BuildContext context) {
     final InitializationSettings initializationSettings =
         InitializationSettings(
-            android: AndroidInitializationSettings("@mipmap/ic_launcher"),
+            android: AndroidInitializationSettings("@mipmap/app_logo"),
             iOS: IOSInitializationSettings(
               requestSoundPermission: false,
               requestBadgePermission: false,
