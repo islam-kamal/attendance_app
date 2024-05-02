@@ -6,9 +6,7 @@ import 'package:flutter/material.dart';
 import '../../../../Base/common/shared.dart';
 import '../../../../Base/utils/styles.dart';
 
-
-
-class DatesDayView extends StatefulWidget{
+class DatesDayView extends StatefulWidget {
   const DatesDayView({super.key});
 
   @override
@@ -17,90 +15,88 @@ class DatesDayView extends StatefulWidget{
 
 class _DatesDayViewState extends State<DatesDayView> {
   final List<int> daysOfMonth = List.generate(31, (index) => index + 1);
- int? selected_day ;
-@override
+  int? selected_day;
+  @override
   void initState() {
-    selected_day  = daysOfMonth[0];
+    selected_day = daysOfMonth[0];
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
-    return  Container(
+    return Container(
       width: MediaQuery.of(context).size.width,
       //height: MediaQuery.of(context).size.height * 0.3 ,
 
       decoration: const BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.only(topRight: Radius.circular(25),topLeft: Radius.circular(25))
-      ),
+          borderRadius: BorderRadius.only(
+              topRight: Radius.circular(25), topLeft: Radius.circular(25))),
       child: SingleChildScrollView(
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 15,horizontal: 10),
-              child:  Container(
-                  height: Shared.width * 0.15,
-
-                   child: ListView.builder(
-                      itemCount: daysOfMonth.length,
-                      shrinkWrap: true,
-
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        return  Padding(
+              padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+              child: Container(
+                height: Shared.width * 0.15,
+                child: ListView.builder(
+                    itemCount: daysOfMonth.length,
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      return Padding(
                           padding: EdgeInsets.symmetric(horizontal: 8),
                           child: InkWell(
-                              onTap: (){
+                              onTap: () {
                                 setState(() {
                                   selected_day = daysOfMonth[index];
                                 });
                               },
                               child: Container(
-
                                 width: MediaQuery.of(context).size.width * 0.21,
                                 decoration: BoxDecoration(
                                   border: Border.all(
                                     width: 0.5,
-                                    color: selected_day == index+1 ? kGreenColor :  Colors.black,
+                                    color: selected_day == index + 1
+                                        ? kGreenColor
+                                        : Colors.black,
                                   ),
                                   borderRadius: BorderRadius.circular(11),
-                                  color: selected_day == index+1 ? kGreenColor : Colors.white,
+                                  color: selected_day == index + 1
+                                      ? kGreenColor
+                                      : Colors.white,
                                 ),
-                                child:  Padding(
+                                child: Padding(
                                   padding: EdgeInsets.symmetric(vertical: 0),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Text('${daysOfMonth[index].toString()}',style: Styles.textStyle24,),
-                                      Text('Sun',style: Styles.textStyle16,),
+                                      Text(
+                                        '${daysOfMonth[index].toString()}',
+                                        style: Styles.textStyle24,
+                                      ),
+                                      Text(
+                                        'Sun',
+                                        style: Styles.textStyle16,
+                                      ),
                                     ],
                                   ),
                                 ),
-
-                              ))
-
-
-
-                        );
-                      }),
-                ),
+                              )));
+                    }),
               ),
-
+            ),
             AttendanceDay(
               branch_name: "مكتب مدينة نصر",
               appoinment: "الاحد و الاثنين",
               attendence_time: "8:00",
               leave_time: "5:00",
               day_number: selected_day.toString(),
-              day_name:  "SUN",
-             ),
+              day_name: "SUN",
+            ),
           ],
         ),
       ),
     );
   }
 }
-
-
-
-

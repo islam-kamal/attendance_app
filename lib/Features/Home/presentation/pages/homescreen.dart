@@ -4,7 +4,7 @@ import 'package:attendance_app_code/model/user.dart';
 import 'package:attendance_app_code/profilescreen.dart';
 import 'package:attendance_app_code/services/employee_schedule_screen.dart';
 import 'package:attendance_app_code/services/location_service.dart';
-import 'package:attendance_app_code/todayscreen.dart';
+import 'package:attendance_app_code/Features/Home/presentation/pages/home_view.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -21,10 +21,13 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    _startLocationService();
-    getId().then((value) {
-      _getCredentials();
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
+      _startLocationService();
+      getId().then((value) {
+        _getCredentials();
+      });
     });
+
   }
 
   void _getCredentials() async {

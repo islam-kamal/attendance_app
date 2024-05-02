@@ -13,7 +13,7 @@ class Shared {
 
   static final  double width = MediaQuery.of(navigatorKey.currentContext!).size.width;
   static final  double height = MediaQuery.of(navigatorKey.currentContext!).size.height;
-
+  static  DateTime task_selected_date =DateTime.now();
 
 
   static showLoadingDialog({required BuildContext context}) {

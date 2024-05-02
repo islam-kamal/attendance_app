@@ -27,10 +27,7 @@ class LoginBloc extends Bloc<AppEvent,AppState> with Validator{
       if(event.password == snap.docs[0]['password']) {
         SharedPreferences   sharedPreferences = await SharedPreferences.getInstance();
         User.employeeId = event.username;
-        sharedPreferences.setString('employeeId', event.username);/*.whenComplete((){
-          User.employeeId = event.username;
-
-        });*/
+        sharedPreferences.setString('employeeId', event.username);
         emit(Done());
       } else {
        emit(ErrorLoading());

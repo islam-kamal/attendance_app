@@ -39,7 +39,7 @@ class WorkDetailsView extends StatelessWidget{
             Column(
               children: [
                 Image.asset(
-                  'assets/images/clock.png',
+                 'assets/images/afternoon.png',
                   color: Colors.white,
                 ),
                 const SizedBox(
@@ -64,8 +64,8 @@ class WorkDetailsView extends StatelessWidget{
             Column(
               children: [
                 Image.asset(
-                  'assets/images/afternoon.png',
-                color: Colors.white,
+                  'assets/images/clock.png',
+                  color: Colors.white,
                 ),
                 const SizedBox(
                   height: 7,
