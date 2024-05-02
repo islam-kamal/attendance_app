@@ -3,9 +3,7 @@ import 'package:attendance_app_code/Features/Attendance_Table/presentation/pages
 import 'package:attendance_app_code/Features/DiscountList/presentation/pages/discount_list_screen.dart';
 import 'package:attendance_app_code/Features/Notifications/presentation/pages/notifications_screen.dart';
 import 'package:attendance_app_code/Features/TaskTable/presentation/pages/tasks_table_screen.dart';
-import 'package:attendance_app_code/Features/Whatsapp_Chatbot/whatsapp_chatbot_screen.dart';
 import 'package:attendance_app_code/Features/Home/presentation/pages/homescreen.dart';
-import 'package:attendance_app_code/profilescreen.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
@@ -35,7 +33,7 @@ class _IndexScreenState extends State<IndexScreen> {
     List<PersistentBottomNavBarItem> _navBarsItems = [
       PersistentBottomNavBarItem(
         icon: Transform.scale(
-            scale: 1.5, // Adjust the scale as needed to increase the size
+            scale: 1.3, // Adjust the scale as needed to increase the size
           child:Padding(
             padding: EdgeInsets.all(5),
             child:  ImageIcon(
@@ -49,7 +47,7 @@ class _IndexScreenState extends State<IndexScreen> {
       ),
       PersistentBottomNavBarItem(
         icon: Transform.scale(
-            scale: 1.5, // Adjust the scale as needed to increase the size
+            scale: 1.3, // Adjust the scale as needed to increase the size
             child:Padding(
               padding: EdgeInsets.all(5),
               child:  ImageIcon(
@@ -64,7 +62,7 @@ class _IndexScreenState extends State<IndexScreen> {
       PersistentBottomNavBarItem(
 
         icon: Transform.scale(
-            scale: 1.5, // Adjust the scale as needed to increase the size
+            scale: 1.3, // Adjust the scale as needed to increase the size
             child:Padding(
               padding: EdgeInsets.all(5),
               child:  ImageIcon(
@@ -78,7 +76,7 @@ class _IndexScreenState extends State<IndexScreen> {
       ),
       PersistentBottomNavBarItem(
         icon: Transform.scale(
-            scale: 1.5,// Adjust the scale as needed to increase the size
+            scale: 1.3,// Adjust the scale as needed to increase the size
             child:Padding(
               padding: EdgeInsets.all(5),
               child:  ImageIcon(
@@ -92,7 +90,7 @@ class _IndexScreenState extends State<IndexScreen> {
       ),
       PersistentBottomNavBarItem(
         icon: Transform.scale(
-            scale: 1.5, // Adjust the scale as needed to increase the size
+            scale: 1.3, // Adjust the scale as needed to increase the size
             child:Padding(
               padding: EdgeInsets.all(5),
               child:  ImageIcon(

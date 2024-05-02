@@ -1,12 +1,22 @@
 import 'package:attendance_app_code/Base/common/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../Base/common/shared.dart';
 import '../../../../Base/utils/styles.dart';
-import '../../../../main.dart';
 
-class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
+class HomeAppBar extends StatefulWidget implements PreferredSizeWidget {
   const HomeAppBar({super.key});
+
+  @override
+  State<HomeAppBar> createState() => _HomeAppBarState();
+
+  @override
+  Size get preferredSize => Size.fromHeight(Shared.width * 0.2);
+}
+
+class _HomeAppBarState extends State<HomeAppBar> {
+  late SharedPreferences sharedPreferences;
 
   @override
   Widget build(BuildContext context) {
@@ -16,19 +26,14 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          IconButton(
+       IconButton(
               onPressed: () {},
               icon: ImageIcon(
                 AssetImage("assets/images/notification.png"),
                 color: kWhiteColor,
               )
+       ),
 
-              /*  const Icon(
-                  Icons.noti,
-                  color: Colors.white,
-                  size: 34,
-                ),*/
-              ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
@@ -65,7 +70,5 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
     );
   }
 
-  @override
-  // TODO: implement preferredSize
-  Size get preferredSize => Size.fromHeight(Shared.width * 0.2);
+
 }

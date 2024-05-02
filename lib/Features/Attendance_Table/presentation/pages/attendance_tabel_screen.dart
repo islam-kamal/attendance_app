@@ -127,7 +127,7 @@ class _AttendanceTableScreenState extends State<AttendanceTableScreen> {
                                     ),
 
                                     child: DataTable(
-                                        columnSpacing:  Shared.width * 0.05,
+                                        columnSpacing:  Shared.width * 0.02,
 
                                         horizontalMargin:0,
                                         columns: [
@@ -181,7 +181,7 @@ class _AttendanceTableScreenState extends State<AttendanceTableScreen> {
                                               cells: [
                                                 DataCell(
                                                     Center(child: Text(
-                                                  intl.DateFormat('EE\ndd').format(snap[index]['date'].toDate()),))
+                                                  "${intl. DateFormat("dd").format(snap[index]['date'].toDate())} ${intl. DateFormat.EEEE('ar').format(snap[index]['date'].toDate())}",))
                                                 ),
 
                                                 DataCell(Center(child: Text(

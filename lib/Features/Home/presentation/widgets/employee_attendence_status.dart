@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import '../../../../Base/common/shared.dart';
 import '../../../../Base/common/theme.dart';
 
-class EmployeeAttendenceStatus extends StatelessWidget{
+class EmployeeAttendenceStatus extends StatelessWidget {
   final int status;
   EmployeeAttendenceStatus({required this.status});
   @override
@@ -11,9 +11,9 @@ class EmployeeAttendenceStatus extends StatelessWidget{
     return emp_status(status: status);
   }
 
-  Widget emp_status({int? status}){
-    switch(status){
-      case 0 : // when employee attend to work on time
+  Widget emp_status({int? status}) {
+    switch (status) {
+      case 0: // when employee attend to work on time
         return Container(
           width: Shared.width * 0.35,
           height: Shared.width * 0.35,
@@ -35,44 +35,49 @@ class EmployeeAttendenceStatus extends StatelessWidget{
               ),
               Text(
                 'حضرت',
-                style: TextStyle(color: kGreenColor,   fontWeight: FontWeight.bold, fontSize: 18),
+                style: TextStyle(
+                    color: kGreenColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18),
               ),
-              Text('في الموعد المحدد',),
+              Text(
+                'في الموعد المحدد',
+              ),
             ],
           ),
         );
         break;
       case 1: // before employee attend to work
-        return    Container(
-        width: 135,
-        height: 138,
-    decoration: BoxDecoration(
-    borderRadius: BorderRadius.circular(20),
-    gradient: LinearGradient(
-    begin: Alignment.topRight,
-    end: Alignment.bottomLeft,
-    colors: [
-    kWhiteColor,
-    Color(0xffFFFFFF),
-    ],
-    ),
-    ),
-    child: Column(
-    children: [
-    Image.asset(
-    'assets/images/3dicons.png',
-    ),
-    Text(
-    'متبقي5:26 دقائق',
-    style: TextStyle(
-    color: kBlackColor,
-    fontWeight: FontWeight.bold, fontSize: 18
-    ),
-    ),
-    Text(' علي موعد الحضور'),
-    ],
-    ),
-    );
+        return Container(
+          width: 135,
+          height: 138,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [
+                kWhiteColor,
+                Color(0xffFFFFFF),
+              ],
+            ),
+          ),
+          child: Column(
+            children: [
+              Image.asset(
+                'assets/images/3dicons.png',
+              ),
+              Text(
+                'متبقي5:26 دقائق',
+                style: TextStyle(
+                    color: kBlackColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18),
+              ),
+              Text(' علي موعد الحضور'),
+            ],
+          ),
+        );
         break;
       case 2: // when employee attend to work later
         return Container(
@@ -98,16 +103,18 @@ class EmployeeAttendenceStatus extends StatelessWidget{
                 'تأخير',
                 style: TextStyle(
                     color: kRedColor,
-                    fontWeight: FontWeight.bold, fontSize: 18
-                ),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18),
               ),
-              Text('عن الموعد المحدد',),
+              Text(
+                'عن الموعد المحدد',
+              ),
             ],
           ),
         );
         break;
       default: // before employee attend to work
-        return    Container(
+        return Container(
           width: 135,
           height: 138,
           decoration: BoxDecoration(
@@ -130,8 +137,8 @@ class EmployeeAttendenceStatus extends StatelessWidget{
                 'متبقي5:26 دقائق',
                 style: TextStyle(
                     color: kBlackColor,
-                    fontWeight: FontWeight.bold, fontSize: 18
-                ),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18),
               ),
               Text(' علي موعد الحضور'),
             ],
@@ -139,5 +146,4 @@ class EmployeeAttendenceStatus extends StatelessWidget{
         );
     }
   }
-
 }

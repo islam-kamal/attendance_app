@@ -4,8 +4,6 @@ import 'package:attendance_app_code/Base/Notifications/local_notification_servic
 import 'package:attendance_app_code/Base/common/shared_preference_manger.dart';
 import 'package:attendance_app_code/Base/database/notifications_db.dart';
 import 'package:attendance_app_code/Features/BottomNavigationBar/bottom_navigation_bar_widget.dart';
-import 'package:attendance_app_code/Features/Notifications/presentation/pages/notifications_screen.dart';
-import 'package:attendance_app_code/Features/Home/presentation/pages/homescreen.dart';
 import 'package:attendance_app_code/model/user.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -50,11 +48,9 @@ class MyApp extends StatefulWidget{
 class _MyAppState extends State<MyApp> {
 
   Locale? local;
-  Key? key = UniqueKey();
   void restartApp() {
     setState(() {
       get_Static_data();
-      key = UniqueKey();
     });
   }
 
