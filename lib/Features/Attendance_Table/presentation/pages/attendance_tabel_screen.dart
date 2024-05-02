@@ -205,7 +205,7 @@ class _AttendanceTableScreenState extends State<AttendanceTableScreen> {
                                                     padding:  EdgeInsets.symmetric(vertical: 0,horizontal: 20),
                                                     child:Center(child: Text(
                                                       snap[index]['status'],
-                                              softWrap: true,
+                                                      softWrap: true,
                                                     )  ),
                                                       ),
 

@@ -70,6 +70,7 @@ dependencies:
   persistent_bottom_nav_bar: ^5.0.2
   whatsapp_chatbot: ^1.0.0
   simple_month_year_picker: ^1.0.5
+  uuid: ^3.0.5
 
 dev_dependencies:
   flutter_test:
@@ -111,6 +112,7 @@ flutter:
     - assets/images/notification.png
     - assets/images/iconClockkk.png
     - assets/images/icon-clock.png
+    - assets/images/calendar.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

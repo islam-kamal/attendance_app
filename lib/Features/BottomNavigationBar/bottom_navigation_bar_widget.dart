@@ -2,6 +2,7 @@ import 'package:attendance_app_code/Base/common/theme.dart';
 import 'package:attendance_app_code/Features/Attendance_Table/presentation/pages/attendance_tabel_screen.dart';
 import 'package:attendance_app_code/Features/DiscountList/presentation/pages/discount_list_screen.dart';
 import 'package:attendance_app_code/Features/Notifications/presentation/pages/notifications_screen.dart';
+import 'package:attendance_app_code/Features/TaskTable/presentation/pages/tasks_table_screen.dart';
 import 'package:attendance_app_code/Features/Whatsapp_Chatbot/whatsapp_chatbot_screen.dart';
 import 'package:attendance_app_code/Features/Home/presentation/pages/homescreen.dart';
 import 'package:attendance_app_code/profilescreen.dart';
@@ -109,7 +110,7 @@ class _IndexScreenState extends State<IndexScreen> {
       return [
         HomeScreen(),
         NotificationsScreen(),
-        WhatsappChatbotScreen(),
+        TasksTableScreen(),
         DiscountListScreen(),
         AttendanceTableScreen(),
       ];
