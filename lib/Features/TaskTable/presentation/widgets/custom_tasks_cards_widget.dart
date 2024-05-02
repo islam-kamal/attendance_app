@@ -55,21 +55,29 @@ class _CardWidgetState extends State<CardWidget> {
                            size: 28,
                          )),
                      Column(
+                       crossAxisAlignment: CrossAxisAlignment.end,
+                       mainAxisAlignment: MainAxisAlignment.end,
                        children: [
                          Text(
                              'مهام اليوم',
-                             style: Styles.textStyle28),
+                             style: Styles.textStyle24),
                           Opacity(
                              opacity: 0.9,
-                             child: Text(
-                               "${snapshot.data!.docs.where((document){
-
-                                 Timestamp timestamp = document['date'] as Timestamp;
-                                 DateTime dateTime = timestamp.toDate();
-                                 return (dateTime.day == Shared.task_selected_date.day);
-                               }).length.toString()}  مهام هذا اليوم",
-                               style: Styles.textStyle16,
-                             )),
+                             child: Row(
+                               mainAxisAlignment: MainAxisAlignment.start,
+                               children: [
+                                 Text("مهام هذا اليوم"),
+                                 Text(
+                                   " ${snapshot.data!.docs.where((document){
+                                     Timestamp timestamp = document['date'] as Timestamp;
+                                     DateTime dateTime = timestamp.toDate();
+                                     return (dateTime.day == Shared.task_selected_date.day);
+                                   }).length.toString()}  ",
+                                   style: Styles.textStyle16,
+                                 )
+                               ],
+                             )
+                          ),
                        ],
                      )
                    ],
@@ -77,7 +85,14 @@ class _CardWidgetState extends State<CardWidget> {
                )),
                 Container(
                   height: Shared.width,
-                  child: ListView(
+                  child: snapshot.data!.docs.where((document){
+          Timestamp timestamp = document['date'] as Timestamp;
+          DateTime dateTime = timestamp.toDate();
+          return (dateTime.day == Shared.task_selected_date.day);
+          }).isEmpty ? Center(
+                    child: Text("لا توجد مهام",
+                    style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
+                  ) : ListView(
                     shrinkWrap: true,
                     children: snapshot.data!.docs.map((DocumentSnapshot document) {
                       Map<String, dynamic> data =

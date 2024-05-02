@@ -1,6 +1,5 @@
 import 'package:attendance_app_code/Base/common/theme.dart';
 import 'package:attendance_app_code/Features/Home/presentation/widgets/attentance_day.dart';
-import 'package:attendance_app_code/Features/Home/presentation/widgets/times_of_work_list_view.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../Base/common/shared.dart';
@@ -14,11 +13,12 @@ class DatesDayView extends StatefulWidget {
 }
 
 class _DatesDayViewState extends State<DatesDayView> {
-  final List<int> daysOfMonth = List.generate(31, (index) => index + 1);
+  DateTime now = DateTime.now();
   int? selected_day;
+
   @override
   void initState() {
-    selected_day = daysOfMonth[0];
+    selected_day = Shared.generateMonthDayNames(now)[0].number;
     super.initState();
   }
 
@@ -26,8 +26,6 @@ class _DatesDayViewState extends State<DatesDayView> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      //height: MediaQuery.of(context).size.height * 0.3 ,
-
       decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
@@ -36,56 +34,77 @@ class _DatesDayViewState extends State<DatesDayView> {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-              child: Container(
-                height: Shared.width * 0.15,
-                child: ListView.builder(
-                    itemCount: daysOfMonth.length,
+              padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 15),
+                child: Container(
+                  height: Shared.width * 0.18,
+                  child: ListView.builder(
                     shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
+                    itemCount: Shared.generateMonthDayNames(now).length,
                     itemBuilder: (context, index) {
-                      return Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 8),
-                          child: InkWell(
-                              onTap: () {
-                                setState(() {
-                                  selected_day = daysOfMonth[index];
-                                });
-                              },
-                              child: Container(
-                                width: MediaQuery.of(context).size.width * 0.21,
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    width: 0.5,
-                                    color: selected_day == index + 1
-                                        ? kGreenColor
-                                        : Colors.black,
-                                  ),
-                                  borderRadius: BorderRadius.circular(11),
-                                  color: selected_day == index + 1
-                                      ? kGreenColor
-                                      : Colors.white,
+                      return InkWell(
+                          onTap: () {
+                            setState(() {
+                              selected_day = Shared.generateMonthDayNames(now)[index].number;
+                              Shared.task_selected_date = Shared.generateMonthDayNames(now)[index].date;
+                            });
+
+                          },
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 5),
+                            child: Container(
+                              width: MediaQuery.of(context).size.width * 0.21,
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  width: 0.5,
+                                  color: Colors.black,
                                 ),
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 0),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        '${daysOfMonth[index].toString()}',
-                                        style: Styles.textStyle24,
+                                borderRadius: BorderRadius.circular(11),
+                                color: selected_day ==
+                                    Shared.generateMonthDayNames(now)[index].number
+                                    ? kGreenColor
+                                    : kWhiteColor,
+                              ),
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(vertical: 0),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      Shared.generateMonthDayNames(now)[index]
+                                          .number
+                                          .toString(),
+                                      style: Styles.textStyle24.copyWith(
+                                        color: selected_day ==
+                                            Shared.generateMonthDayNames(now)[index].number
+                                            ? kWhiteColor
+                                            : kBlackColor,
+
                                       ),
-                                      Text(
-                                        'Sun',
-                                        style: Styles.textStyle16,
+                                    ),
+                                    Text(
+                                      Shared.generateMonthDayNames(now)[index].name,
+                                      style: Styles.textStyle16.copyWith(
+                                        color: selected_day ==
+                                            Shared.generateMonthDayNames(now)[index].number
+                                            ? kWhiteColor
+                                            : kBlackColor,
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
-                              )));
-                    }),
+                              ),
+                            ),
+                          ));
+
+                    },
+                  ),
+                ),
               ),
             ),
+
             AttendanceDay(
               branch_name: "مكتب مدينة نصر",
               appoinment: "الاحد و الاثنين",
