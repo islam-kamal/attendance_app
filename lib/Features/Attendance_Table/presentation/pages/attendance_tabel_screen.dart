@@ -230,7 +230,7 @@ class _AttendanceTableScreenState extends State<AttendanceTableScreen> {
                           child: const Text(
                             "There Is No Data",
                             style: TextStyle(
-                              fontFamily: "NexaRegular",
+                              fontFamily: "Cairo",
                               fontSize: 20,
                               color: Colors.black54,
                             ),
@@ -245,7 +245,7 @@ class _AttendanceTableScreenState extends State<AttendanceTableScreen> {
                         child: const Text(
                           "There Is No Data",
                           style: TextStyle(
-                            fontFamily: "NexaRegular",
+                            fontFamily: "Cairo",
                             fontSize: 20,
                             color: Colors.black54,
                           ),

@@ -109,7 +109,7 @@ class _EmployeeScheduleScreenState extends State<EmployeeScheduleScreen> {
         title: Text(
           "Employee Schedule",
           style: TextStyle(
-              fontFamily: "NexaBold",
+              fontFamily: "Cairo",
               fontSize: screenWidth / 18,
               color: Colors.black),
         ),
@@ -185,7 +185,7 @@ class _EmployeeScheduleScreenState extends State<EmployeeScheduleScreen> {
                           child: const Text(
                             "There Is No Data",
                             style: TextStyle(
-                              fontFamily: "NexaRegular",
+                              fontFamily: "Cairo",
                               fontSize: 20,
                               color: Colors.black54,
                             ),
@@ -199,7 +199,7 @@ class _EmployeeScheduleScreenState extends State<EmployeeScheduleScreen> {
                       child: const Text(
                         "There Is No Data",
                         style: TextStyle(
-                          fontFamily: "NexaRegular",
+                          fontFamily: "Cairo",
                           fontSize: 20,
                           color: Colors.black54,
                         ),

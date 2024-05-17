@@ -127,10 +127,10 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: NexaBold
+    - family: Cairo
       fonts:
         - asset: assets/fonts/Cairo-VariableFont_slnt,wght.ttf
-    - family: NexaRegular
+    - family: Cairo
       fonts:
         - asset: assets/fonts/Cairo-VariableFont_slnt,wght.ttf
   #

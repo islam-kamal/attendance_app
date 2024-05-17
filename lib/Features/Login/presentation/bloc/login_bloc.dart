@@ -28,6 +28,8 @@ class LoginBloc extends Bloc<AppEvent,AppState> with Validator{
         SharedPreferences   sharedPreferences = await SharedPreferences.getInstance();
         User.employeeId = event.username;
         sharedPreferences.setString('employeeId', event.username);
+
+
         emit(Done());
       } else {
        emit(ErrorLoading());

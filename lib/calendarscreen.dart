@@ -35,7 +35,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
               child: Text(
                 "My Attendance",
                 style: TextStyle(
-                  fontFamily: "NexaBold",
+                  fontFamily: "Cairo",
                   fontSize: screenWidth / 18,
                 ),
               ),
@@ -48,7 +48,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                   child: Text(
                     _month,
                     style: TextStyle(
-                      fontFamily: "NexaBold",
+                      fontFamily: "Cairo",
                       fontSize: screenWidth / 18,
                     ),
                   ),
@@ -78,13 +78,13 @@ class _CalendarScreenState extends State<CalendarScreen> {
                               ),
                               textTheme: const TextTheme(
                                 headline4: TextStyle(
-                                  fontFamily: "NexaBold",
+                                  fontFamily: "Cairo",
                                 ),
                                 overline: TextStyle(
-                                  fontFamily: "NexaBold",
+                                  fontFamily: "Cairo",
                                 ),
                                 button: TextStyle(
-                                  fontFamily: "NexaBold",
+                                  fontFamily: "Cairo",
                                 ),
                               ),
                             ),
@@ -150,7 +150,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                                     child: Text(
                                       DateFormat('EE\ndd').format(snap[index]['date'].toDate()),
                                       style: TextStyle(
-                                        fontFamily: "NexaBold",
+                                        fontFamily: "Cairo",
                                         fontSize: screenWidth / 18,
                                         color: Colors.white,
                                       ),
@@ -166,7 +166,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                                     Text(
                                       "Check In",
                                       style: TextStyle(
-                                        fontFamily: "NexaRegular",
+                                        fontFamily: "Cairo",
                                         fontSize: screenWidth / 20,
                                         color: Colors.black54,
                                       ),
@@ -174,7 +174,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                                     Text(
                                       snap[index]['checkIn'],
                                       style: TextStyle(
-                                        fontFamily: "NexaBold",
+                                        fontFamily: "Cairo",
                                         fontSize: screenWidth / 18,
                                       ),
                                     ),
@@ -189,7 +189,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                                     Text(
                                       "Check Out",
                                       style: TextStyle(
-                                        fontFamily: "NexaRegular",
+                                        fontFamily: "Cairo",
                                         fontSize: screenWidth / 20,
                                         color: Colors.black54,
                                       ),
@@ -197,7 +197,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                                     Text(
                                       snap[index]['checkOut'],
                                       style: TextStyle(
-                                        fontFamily: "NexaBold",
+                                        fontFamily: "Cairo",
                                         fontSize: screenWidth / 18,
                                       ),
                                     ),
@@ -216,7 +216,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                           child:  const  Text(
                             "There Is No Data",
                             style: TextStyle(
-                              fontFamily: "NexaRegular",
+                              fontFamily: "Cairo",
                               fontSize:  20,
                               color: Colors.black54,
                             ),

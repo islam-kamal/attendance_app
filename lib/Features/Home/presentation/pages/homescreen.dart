@@ -46,7 +46,16 @@ class _HomeScreenState extends State<HomeScreen> {
       return;
     }
   }
+  Future<void> getId() async {
+    QuerySnapshot snap = await FirebaseFirestore.instance
+        .collection("Employee")
+        .where('id', isEqualTo: User.employeeId)
+        .get();
 
+    setState(() {
+      User.id = snap.docs[0].id;
+    });
+  }
 
   void _startLocationService() async {
     LocationService().initialize();
@@ -64,16 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  Future<void> getId() async {
-    QuerySnapshot snap = await FirebaseFirestore.instance
-        .collection("Employee")
-        .where('id', isEqualTo: User.employeeId)
-        .get();
 
-    setState(() {
-      User.id = snap.docs[0].id;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {

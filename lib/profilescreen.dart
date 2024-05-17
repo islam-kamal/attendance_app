@@ -95,7 +95,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   child: Text(
                     "Employee ${User.employeeId}",
                     style: const TextStyle(
-                      fontFamily: "NexaBold",
+                      fontFamily: "Cairo",
                       fontSize: 18,
                     ),
                   ),
@@ -127,13 +127,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ),
                               textTheme: const TextTheme(
                                 headline4: TextStyle(
-                                  fontFamily: "NexaBold",
+                                  fontFamily: "Cairo",
                                 ),
                                 overline: TextStyle(
-                                  fontFamily: "NexaBold",
+                                  fontFamily: "Cairo",
                                 ),
                                 button: TextStyle(
-                                  fontFamily: "NexaBold",
+                                  fontFamily: "Cairo",
                                 ),
                               ),
                             ),
@@ -199,7 +199,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         "SAVE",
                         style: TextStyle(
                           color: Colors.white,
-                          fontFamily: "NexaBold",
+                          fontFamily: "Cairo",
                           fontSize: 16,
                         ),
                       ),
@@ -237,7 +237,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           child: Text(
             title,
             style: const TextStyle(
-              fontFamily: "NexaBold",
+              fontFamily: "Cairo",
               color: Colors.black87,
             ),
           ),
@@ -259,7 +259,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               text,
               style: const TextStyle(
                 color: Colors.black54,
-                fontFamily: "NexaBold",
+                fontFamily: "Cairo",
                 fontSize: 16,
               ),
             ),
@@ -277,7 +277,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           child: Text(
             title,
             style: const TextStyle(
-              fontFamily: "NexaBold",
+              fontFamily: "Cairo",
               color: Colors.black87,
             ),
           ),
@@ -292,7 +292,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               hintText: hint,
               hintStyle: const TextStyle(
                 color: Colors.black54,
-                fontFamily: "NexaBold",
+                fontFamily: "Cairo",
               ),
               enabledBorder: const OutlineInputBorder(
                 borderSide: BorderSide(

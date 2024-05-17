@@ -189,7 +189,7 @@ int? selected_index = 0;
                                 child: const Text(
                                   "There Is No Data",
                                   style: TextStyle(
-                                    fontFamily: "NexaRegular",
+                                    fontFamily: "Cairo",
                                     fontSize: 20,
                                     color: Colors.black54,
                                   ),
@@ -203,7 +203,7 @@ int? selected_index = 0;
                               child: const Text(
                                 "There Is No Data",
                                 style: TextStyle(
-                                  fontFamily: "NexaRegular",
+                                  fontFamily: "Cairo",
                                   fontSize: 20,
                                   color: Colors.black54,
                                 ),
