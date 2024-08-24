@@ -1,13 +1,8 @@
-import 'package:attendance_app_code/Features/Notifications/presentation/pages/notifications_screen.dart';
-import 'package:attendance_app_code/calendarscreen.dart';
 import 'package:attendance_app_code/model/user.dart';
-import 'package:attendance_app_code/profilescreen.dart';
-import 'package:attendance_app_code/services/employee_schedule_screen.dart';
 import 'package:attendance_app_code/services/location_service.dart';
 import 'package:attendance_app_code/Features/Home/presentation/pages/home_view.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -21,7 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       _startLocationService();
       getId().then((value) {
         _getCredentials();
@@ -37,9 +32,9 @@ class _HomeScreenState extends State<HomeScreen> {
       print("_doc['firstName'] : ${doc['firstName']}");
       setState(() {
         User.canEdit = doc['canEdit'];
-        User.firstName = doc['firstName'];
+        User.phone = doc['firstName'];
         User.lastName = doc['lastName'];
-        User.birthDate = doc['birthDate'];
+        User.email = doc['birthDate'];
         User.address = doc['address'];
       });
     } catch(e) {

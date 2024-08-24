@@ -1,9 +1,6 @@
-import 'package:attendance_app_code/Base/common/theme.dart';
 import 'package:attendance_app_code/Features/Home/presentation/widgets/employee_attendence_status.dart';
 import 'package:attendance_app_code/Features/Home/presentation/widgets/work_details_view.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-
 import '../../../../Base/common/shared.dart';
 import '../../../../Base/utils/styles.dart';
 
@@ -33,7 +30,7 @@ class WorkHoursView extends StatelessWidget {
     return Center(
       child: Column(
         children: [
-          StreamBuilder(
+       /*   StreamBuilder(
             stream: Stream.periodic(const Duration(seconds: 1)),
             builder: (context, snapshot) {
               return Container(
@@ -55,7 +52,7 @@ class WorkHoursView extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-
+*/
           EmployeeAttendenceStatus(status: status),
           const SizedBox(
             height: 7,
@@ -70,7 +67,7 @@ class WorkHoursView extends StatelessWidget {
                       Opacity(
                           opacity: 0.9,
                           child: Container(
-                            width: Shared.width * 0.7,
+                            width: Shared.width * 0.8,
                             child: Text(
                               location,
                               style: Styles.textStyle14

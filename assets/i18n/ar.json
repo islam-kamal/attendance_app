@@ -1,4 +1,6 @@
 {
-
-  "update_now": "تحديث الان"
+  "update_now": "تحديث الان",
+  "create_new_account" : "أنشاء حساب جديد",
+  "email_empty" :  "مطلوب ادخال البريد الإلكتروني ",
+  "password_empty" : "مطلوب ادخال كلمة المرور "
 }

@@ -1,9 +1,10 @@
 class User {
   static String id = " ";
   static String employeeId = " ";
-  static String firstName = " ";
+  static String username = " ";
+  static String phone = " ";
   static String lastName = " ";
-  static String birthDate = " ";
+  static String email = " ";
   static String address = " ";
   static String profilePicLink = " ";
   static double lat = 0;

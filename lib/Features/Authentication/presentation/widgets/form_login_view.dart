@@ -1,15 +1,16 @@
+
+import 'package:attendance_app_code/Base/Helper/app_event.dart';
+import 'package:attendance_app_code/Base/Helper/app_state.dart';
+import 'package:attendance_app_code/Features/Authentication/domain/entities/sigin_entity.dart';
 import 'package:attendance_app_code/Features/BottomNavigationBar/bottom_navigation_bar_widget.dart';
-import 'package:attendance_app_code/Features/Login/presentation/bloc/login_bloc.dart';
-import 'package:attendance_app_code/Features/Home/presentation/pages/homescreen.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../Base/common/local_const.dart';
 import '../../../../Base/common/navigtor.dart';
 import '../../../../Base/common/shared.dart';
 import '../../../../Base/common/theme.dart';
-import '../../../../Base/utils/styles.dart';
-import '../bloc/Helper/app_event.dart';
-import '../bloc/Helper/app_state.dart';
+
+import '../bloc/login_bloc.dart';
 
 class FormLoginView extends StatefulWidget {
   const FormLoginView({super.key});
@@ -32,15 +33,19 @@ class _FormLoginViewState extends State<FormLoginView> {
           Shared.showLoadingDialog(context: context);
         }
         else if(state is Done){
+          print("Done");
           Shared.dismissDialog(context: context);
           customAnimatedPushNavigation(context, IndexScreen(index: 0,));
 
         }
         else if(state is ErrorLoading){
+          print("ErrorLoading");
+          print("state.message : ${state.message}");
+
           Shared.dismissDialog(context: context);
           Shared.showSnackBarView(
               error_status: true,
-              backend_message:  "error ocured",
+              backend_message: state.message,
           );
         }
       },
@@ -49,6 +54,18 @@ class _FormLoginViewState extends State<FormLoginView> {
           child: SingleChildScrollView(
             child: Column(
               children: [
+         /*       Container(
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: kBlackColor)
+                  ),
+                  child: SelectableText("${Shared.device_token}",
+                  style: TextStyle(color: kBlackColor),),
+                ),*/
+                const SizedBox(
+                  height: 16,
+                ),
+
                 Container(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
@@ -119,20 +136,23 @@ class _FormLoginViewState extends State<FormLoginView> {
                       onPressed: () async {
                         if (username_controller.text.isEmpty) {
                           Shared.showSnackBarView(
-                            message:  "Email is still empty!",
+                            message:  kEmailRequired,
                             error_status: true
                           );
                         } else if (password_controller.text.isEmpty) {
                           Shared.showSnackBarView(
-                            message: "Password is still empty!",
+                            message: kPasswordRequired,
                               error_status: true
 
                           );
 
                         } else {
                           loginBloc.add(loginClickEvent(
-                              username: username_controller.text,
-                              password: password_controller.text));
+                              siginEntity:SiginEntity(
+                                userName:  username_controller.text,
+                                password:  password_controller.text
+                              )
+                          ));
                         }
                       },
                       style: ElevatedButton.styleFrom(
@@ -143,7 +163,11 @@ class _FormLoginViewState extends State<FormLoginView> {
                       ),
                       child: const Text(
                         'تسجيل الدخول',
-                        style: Styles.textStyle16,
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          color: kWhiteColor
+                        ),
                       ),
                     ))
               ],

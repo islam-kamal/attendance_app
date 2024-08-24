@@ -1,3 +1,6 @@
 {
-  "update_now": "Update Now"
+  "update_now": "Update Now",
+  "create_new_account" : "Create New Account",
+  "email_empty" : "Email required",
+  "password_empty" : "Password required"
 }

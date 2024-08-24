@@ -140,3 +140,5 @@ String kfile_name = "file name";
 String kupload_initative_files = "upload_initaive_files";
 String kthanks_message = "thanks_message";
 String kback_home = "back_home";
+String kEmailRequired= "email_empty";
+String kPasswordRequired= "password_empty";

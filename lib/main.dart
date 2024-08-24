@@ -3,7 +3,9 @@ import 'dart:io';
 import 'package:attendance_app_code/Base/Notifications/local_notification_service.dart';
 import 'package:attendance_app_code/Base/common/shared_preference_manger.dart';
 import 'package:attendance_app_code/Base/database/notifications_db.dart';
+import 'package:attendance_app_code/Features/Authentication/presentation/pages/login_screen.dart';
 import 'package:attendance_app_code/Features/BottomNavigationBar/bottom_navigation_bar_widget.dart';
+import 'package:attendance_app_code/Features/SplashScreen/presentation/pages/splash_screen.dart';
 import 'package:attendance_app_code/model/user.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -15,7 +17,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-import 'Features/Login/presentation/pages/login_screen.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -89,7 +90,7 @@ class _MyAppState extends State<MyApp> {
     ),
     home: LocalizedApp(
     child:const KeyboardVisibilityProvider(
-    child: AuthCheck(),
+    child: SplashScreen(),
     ) ),
 
     locale: local,

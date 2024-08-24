@@ -13,8 +13,12 @@ class Shared {
 
   static final  double width = MediaQuery.of(navigatorKey.currentContext!).size.width;
   static final  double height = MediaQuery.of(navigatorKey.currentContext!).size.height;
+  static  String device_token = '';
+
   static  DateTime task_selected_date =DateTime.now();
   static  DateTime day_selected_date =DateTime.now();
+
+
   static List<Day> generateMonthDayNames(DateTime dateTime) {
     List<Day> monthDayNames = [];
 

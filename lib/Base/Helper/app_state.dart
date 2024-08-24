@@ -1,6 +1,4 @@
 
-import '../../../../../Base/network/network-mappers.dart';
-
 abstract class AppState {
   get model =>null;
 }

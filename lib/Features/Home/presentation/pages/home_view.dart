@@ -41,7 +41,7 @@ int status = 0;
 
     setState(() {
       location =
-          "${placemark[0].street}, ${placemark[0].administrativeArea}, ${placemark[0].country}";
+          "${placemark[0].street}, ${placemark[0].administrativeArea}";
     });
   }
 
@@ -78,10 +78,12 @@ int status = 0;
     screenHeight = MediaQuery.of(context).size.height;
     screenWidth = MediaQuery.of(context).size.width;
 
-    return Scaffold(
+    return WillPopScope(
+        onWillPop: ()async=>false,
+        child:Scaffold(
         backgroundColor: kPrimaryColor,
         appBar: HomeAppBar(),
-        body: SingleChildScrollView(child: Column(
+        body: Column(
           children: [
             WorkHoursView(
               color: Color.fromARGB(255, 168, 244, 228),
@@ -95,7 +97,7 @@ int status = 0;
             ),
 
             Container(
-              margin: const EdgeInsets.only(top: 10, bottom: 12),
+              margin: const EdgeInsets.symmetric(vertical: 15),
               width: Shared.width * 0.85,
               child: Builder(
                 builder: (context) {
@@ -255,9 +257,10 @@ int status = 0;
               ),
             ),
 
-            DatesDayView(),
+            Expanded(
+                child:  DatesDayView()),
           ],
-        ),),
-        );
+        ),
+        ));
   }
 }

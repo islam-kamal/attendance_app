@@ -1,4 +1,4 @@
-import 'package:attendance_app_code/Features/Login/presentation/widgets/index.dart';
+import 'package:attendance_app_code/Features/Authentication/presentation/widgets/login_view_body.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget{

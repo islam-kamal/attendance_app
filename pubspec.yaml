@@ -71,6 +71,7 @@ dependencies:
   whatsapp_chatbot: ^1.0.0
   simple_month_year_picker: ^1.0.5
   uuid: ^3.0.5
+  jwt_decoder: ^2.0.1
 
 dev_dependencies:
   flutter_test:

@@ -1,15 +1,13 @@
-import 'package:attendance_app_code/Features/Home/presentation/pages/homescreen.dart';
+import 'package:attendance_app_code/Base/common/shared_preference_manger.dart';
+import 'package:attendance_app_code/Features/Authentication/presentation/pages/login_screen.dart';
+import 'package:attendance_app_code/Features/BottomNavigationBar/bottom_navigation_bar_widget.dart';
+import 'package:attendance_app_code/Features/Home/presentation/widgets/custom_app_bar.dart';
 import 'package:attendance_app_code/main.dart';
 import 'package:attendance_app_code/model/user.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:image_picker/image_picker.dart';
-import 'dart:io';
-import 'package:intl/intl.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'Base/common/navigtor.dart';
+import 'Base/common/shared.dart';
+import 'Base/common/theme.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -19,16 +17,8 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  double screenHeight = 0;
-  double screenWidth = 0;
-  Color primary = const Color(0xffeef444c);
-  String birth = "Date of birth";
-  late SharedPreferences sharedPreferences;
 
-  TextEditingController firstNameController = TextEditingController();
-  TextEditingController lastNameController = TextEditingController();
-  TextEditingController addressController = TextEditingController();
-
+/*
   void pickUploadProfilePic() async {
     final image = await ImagePicker().pickImage(
       source: ImageSource.gallery,
@@ -52,182 +42,87 @@ class _ProfileScreenState extends State<ProfileScreen> {
       });
     });
   }
+*/
 
   @override
   Widget build(BuildContext context) {
-    screenHeight = MediaQuery.of(context).size.height;
-    screenWidth = MediaQuery.of(context).size.width;
-    return Scaffold(
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(20),
-        child: Stack(
-          children: [
-            Column(
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    pickUploadProfilePic();
-                  },
-                  child: Container(
-                    margin: const EdgeInsets.only(top: 80, bottom: 24),
-                    height: 120,
-                    width: 120,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: User.profilePicLink == " " ?  primary : Colors.transparent,
-                    ),
-                    child: Center(
-                      child: User.profilePicLink == " " ? const Icon(
-                        Icons.person,
-                        color: Colors.white,
-                        size: 80,
-                      ) : ClipRRect(
-                        borderRadius: BorderRadius.circular(20),
-                        child: Image.network(User.profilePicLink,fit: BoxFit.fill,),
-                      ),
-                    ),
-                  ),
-                ),
+    return WillPopScope(
+      onWillPop: ()async=>false,
+      child: Scaffold(
+          appBar: CustomAppBar(
+            title: 'الملف الشخصى',
+            onPress: () {
+              customAnimatedPushNavigation(context, IndexScreen(index: 1));
+            },
+          ),
+        body:  Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10),
+           child: Column(
+             children: [
+                Container(
+                   margin:  EdgeInsets.only(top: Shared.width * 0.1,),
+                   height:  Shared.width * 0.3,
+                   width:  Shared.width * 0.3,
+                   alignment: Alignment.center,
+                   decoration: BoxDecoration(
+                     borderRadius: BorderRadius.circular(20),
+                     color: User.profilePicLink == " " ?  kPrimaryColor : Colors.transparent,
+                   ),
+                   child: Center(
+                     child: User.profilePicLink == " " ? const Icon(
+                       Icons.person,
+                       color: Colors.white,
+                       size: 80,
+                     ) : ClipRRect(
+                       borderRadius: BorderRadius.circular(20),
+                       child: Image.network(User.profilePicLink,fit: BoxFit.fill,),
+                     ),
+                   ),
+                 ),
 
-                Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    "Employee ${User.employeeId}",
-                    style: const TextStyle(
-                      fontFamily: "Cairo",
-                      fontSize: 18,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 24,),
-                User.canEdit ? textField("First Name", "First name", firstNameController) : field("First Name", User.firstName),
-                User.canEdit ? textField("Last Name", "Last name", lastNameController) : field("Last Name", User.lastName),
-                User.canEdit ? GestureDetector(
-                  onTap: () {
-                    showDatePicker(
-                        context: context,
-                        initialDate: DateTime.now(),
-                        firstDate: DateTime(1950),
-                        lastDate: DateTime.now(),
+               const SizedBox(height: 24,),
+               field("User Name", User.username),
+               field("Email", User.email),
+               field("Phone", User.phone),
+               Padding(
+                 padding:  EdgeInsets.symmetric(vertical: Shared.width * 0.05),
+                 child: SizedBox(
+                   width: Shared.width * 0.8,
+                   height: Shared.width * 0.15,
+                   child:  OutlinedButton(
+                     onPressed: () async {
+                       sharedPreferenceManager.removeData(CachingKey.AUTH_TOKEN);
+                       sharedPreferenceManager.removeData(CachingKey.USER_NAME);
+                       sharedPreferenceManager.removeData(CachingKey.USER_ID);
+                       customAnimatedPushNavigation(
+                           navigatorKey.currentContext!, LoginScreen());
+                     },
+                     style: ElevatedButton.styleFrom(
+                       backgroundColor: kRedColor,
+                       shape: RoundedRectangleBorder(
+                           borderRadius: BorderRadius.circular(11),
+                           side: BorderSide(color: kRedColor)
+                       ),
 
-                        builder: (context, child) {
-                          return Theme(
-                            data: Theme.of(context).copyWith(
-                              colorScheme: ColorScheme.light(
-                                primary: primary,
-                                secondary: primary,
-                                onSecondary: Colors.black,
+                     ) ,
+                     child:  Text(
+                         "تسجيل الخروج",
+                         style: TextStyle(color: kWhiteColor, fontSize: 18,
+                           fontWeight: FontWeight.bold,)
+                     ),
+                   ),
+                 ),
+               ),
+             ],
+           ),
+        )
 
-                              ),
-                              textButtonTheme: TextButtonThemeData(
-                                style: TextButton.styleFrom(
-                                  primary: primary,
-                                ),
-                              ),
-                              textTheme: const TextTheme(
-                                headline4: TextStyle(
-                                  fontFamily: "Cairo",
-                                ),
-                                overline: TextStyle(
-                                  fontFamily: "Cairo",
-                                ),
-                                button: TextStyle(
-                                  fontFamily: "Cairo",
-                                ),
-                              ),
-                            ),
-                            child: child!,
-                          );
-                        }
-                    ).then((value) {
-                      setState(() {
-                        birth = DateFormat("MM/dd/yyyy").format(value!);
-                      });
-                    });
-                  },
-                  child: field("Date of Birth", birth),
-                ) : field("Date of Birth", User.birthDate),
-                User.canEdit ? textField("Address", "Address", addressController) : field("Address", User.address),
-                User.canEdit ? GestureDetector(
-                  onTap: () async {
-                    String firstName = firstNameController.text;
-                    String lastName = lastNameController.text;
-                    String birthDate = birth;
-                    String address = addressController.text;
-
-                    if(User.canEdit) {
-                      if(firstName.isEmpty) {
-                        showSnackBar("Please enter your first name!");
-                      } else if(lastName.isEmpty) {
-                        showSnackBar("Please enter your last name!");
-                      } else if(birthDate.isEmpty) {
-                        showSnackBar("Please enter your birth date!");
-                      } else if(address.isEmpty) {
-                        showSnackBar("Please enter your address!");
-                      } else {
-                        await FirebaseFirestore.instance.collection("Employee").doc(User.id).update({
-                          'firstName': firstName,
-                          'lastName': lastName,
-                          'birthDate': birthDate,
-                          'address': address,
-                          'canEdit': false,
-                        }).then((value) {
-                          setState(() {
-                            User.canEdit = false;
-                            User.firstName = firstName;
-                            User.lastName = lastName;
-                            User.birthDate = birthDate;
-                            User.address = address;
-                          });
-                        });
-                      }
-                    } else {
-                      showSnackBar("You can't edit anymore, please contact support team.");
-                    }
-                  },
-                  child: Container(
-                    height: kToolbarHeight,
-                    width: screenWidth,
-                    margin: const EdgeInsets.only(bottom: 12),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4),
-                      color: primary,
-                    ),
-                    child: const Center(
-                      child: Text(
-                        "SAVE",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: "Cairo",
-                          fontSize: 16,
-                        ),
-                      ),
-                    ),
-                  ),
-                ) : const SizedBox(),
-              ],
-            ),
-            Positioned(
-                top: 20,
-                right: 0,
-                child:  IconButton(onPressed: () async {
-                  sharedPreferences = await SharedPreferences.getInstance();
-                  sharedPreferences.remove('employeeId');
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => MyApp(
-
-                      ))
-                  );
-                },
-                    icon: Icon(Icons.logout)))
-          ],
-        ),
 
 
       ),
     );
   }
+
 
   Widget field(String title, String text) {
     return Column(
@@ -244,7 +139,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
         Container(
           height: kToolbarHeight,
-          width: screenWidth,
+          width: Shared.width,
           margin: const EdgeInsets.only(bottom: 12),
           padding: const EdgeInsets.only(left: 11),
           decoration: BoxDecoration(
