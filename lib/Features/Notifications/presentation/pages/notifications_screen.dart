@@ -1,13 +1,11 @@
 
+import 'package:attendance_app_code/Base/common/navigtor.dart';
 import 'package:attendance_app_code/Base/common/theme.dart';
+import 'package:attendance_app_code/Features/Home/presentation/pages/homescreen.dart';
 import 'package:flutter/material.dart';
-import 'package:sqflite/sqflite.dart';
-import 'package:path_provider/path_provider.dart';
 import 'dart:async';
-import 'dart:io';
-
 import '../../../../Base/database/notifications_db.dart';
-import '../../../Home/presentation/widgets/custom_app_bar.dart';
+import '../../../BottomNavigationBar/custom_app_bar.dart';
 import '../../domain/entities/notifications_element.dart';
 import '../widgets/notification_element_widget.dart';
 
@@ -57,8 +55,11 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
     return Scaffold(
       backgroundColor: kWhiteColor,
       appBar: CustomAppBar(title: 'الاشعارات',
-                 onPress: (){},
-
+        icon: InkWell(
+            onTap: () {
+              customAnimatedPushNavigation(context, HomeScreen());
+            } ,
+            child: Icon(Icons.arrow_back_ios)),
            ),
 
       body: Padding(

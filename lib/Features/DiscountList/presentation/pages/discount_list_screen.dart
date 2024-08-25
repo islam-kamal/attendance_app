@@ -1,9 +1,8 @@
 import 'package:attendance_app_code/Base/common/theme.dart';
-import 'package:attendance_app_code/model/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import '../../../../Base/common/shared.dart';
-import '../../../Home/presentation/widgets/custom_app_bar.dart';
+import '../../../BottomNavigationBar/custom_app_bar.dart';
 
 class DiscountListScreen extends StatefulWidget {
   @override
@@ -43,7 +42,6 @@ int? selected_index = 0;
           backgroundColor: kWhiteColor,
           appBar: CustomAppBar(
             title: 'لائحة الخصم',
-            onPress: () {},
           ),
           body: Directionality(textDirection: TextDirection.rtl,
             child: Padding(

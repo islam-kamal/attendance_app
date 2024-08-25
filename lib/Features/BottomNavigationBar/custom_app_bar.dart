@@ -61,14 +61,14 @@ import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget    implements PreferredSizeWidget{
   final String title;
-  Function onPress;
-  CustomAppBar({required this.title,required this.onPress});
+  final Widget? icon;
+  CustomAppBar({required this.title, this.icon});
 
   @override
   Widget build(BuildContext context) {
     return  AppBar(
       toolbarHeight:MediaQuery.of(context).size.height/10,
-      leading: Icon(Icons.arrow_back_ios),
+      leading: icon ?? Container(),
       centerTitle: true,
       title: Text("$title",
         style: TextStyle(fontWeight: FontWeight.bold,fontSize: 24),

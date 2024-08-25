@@ -1,13 +1,13 @@
 import 'package:attendance_app_code/Base/common/shared_preference_manger.dart';
 import 'package:attendance_app_code/Features/Authentication/presentation/pages/login_screen.dart';
-import 'package:attendance_app_code/Features/BottomNavigationBar/bottom_navigation_bar_widget.dart';
-import 'package:attendance_app_code/Features/Home/presentation/widgets/custom_app_bar.dart';
+import 'package:attendance_app_code/Features/Home/presentation/pages/homescreen.dart';
+import 'package:attendance_app_code/Features/BottomNavigationBar/custom_app_bar.dart';
 import 'package:attendance_app_code/main.dart';
 import 'package:attendance_app_code/model/user.dart';
 import 'package:flutter/material.dart';
-import 'Base/common/navigtor.dart';
-import 'Base/common/shared.dart';
-import 'Base/common/theme.dart';
+import '../../../../Base/common/navigtor.dart';
+import '../../../../Base/common/shared.dart';
+import '../../../../Base/common/theme.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -51,9 +51,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
       child: Scaffold(
           appBar: CustomAppBar(
             title: 'الملف الشخصى',
-            onPress: () {
-              customAnimatedPushNavigation(context, IndexScreen(index: 1));
-            },
+            icon: InkWell(
+                onTap: () {
+                  customAnimatedPushNavigation(context, HomeScreen());
+                } ,
+                child: Icon(Icons.arrow_back_ios)),
           ),
         body:  Padding(
           padding: EdgeInsets.symmetric(horizontal: 10),

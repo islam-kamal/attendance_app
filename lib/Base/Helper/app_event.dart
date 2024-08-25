@@ -12,3 +12,9 @@ class loginClickEvent extends AppEvent{
   loginClickEvent({required this.siginEntity});
 }
 
+
+class ApplyRegisterationEvent extends AppEvent{
+  final String  status;
+
+  ApplyRegisterationEvent({required this.status});
+}

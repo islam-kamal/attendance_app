@@ -1,7 +1,6 @@
 import 'package:attendance_app_code/Base/common/theme.dart';
 import 'package:attendance_app_code/Features/Attendance_Table/presentation/pages/attendance_tabel_screen.dart';
 import 'package:attendance_app_code/Features/DiscountList/presentation/pages/discount_list_screen.dart';
-import 'package:attendance_app_code/Features/Notifications/presentation/pages/notifications_screen.dart';
 import 'package:attendance_app_code/Features/TaskTable/presentation/pages/tasks_table_screen.dart';
 import 'package:attendance_app_code/Features/Home/presentation/pages/homescreen.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +44,7 @@ class _IndexScreenState extends State<IndexScreen> {
         activeColorPrimary: Color(0xFF01D9AC),
         inactiveColorPrimary: Colors.grey,
       ),
-      PersistentBottomNavBarItem(
+/*      PersistentBottomNavBarItem(
         icon: Transform.scale(
             scale: 1.3, // Adjust the scale as needed to increase the size
             child:Padding(
@@ -58,7 +57,7 @@ class _IndexScreenState extends State<IndexScreen> {
         title: ("الأشعارات"),
         activeColorPrimary:Color(0xFF01D9AC),
         inactiveColorPrimary: Colors.grey,
-      ),
+      ),*/
       PersistentBottomNavBarItem(
 
         icon: Transform.scale(
@@ -107,7 +106,7 @@ class _IndexScreenState extends State<IndexScreen> {
     List<Widget> _buildScreens() {
       return [
         HomeScreen(),
-        NotificationsScreen(),
+        //NotificationsScreen(),
         TasksTableScreen(),
         DiscountListScreen(),
         AttendanceTableScreen(),

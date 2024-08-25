@@ -7,9 +7,7 @@ import 'package:simple_month_year_picker/simple_month_year_picker.dart';
 
 import '../../../../Base/common/shared.dart';
 import '../../../../Base/common/theme.dart';
-import '../../../Home/presentation/widgets/custom_app_bar.dart';
-import '../widgets/attendance_table_header_widget.dart';
-import '../widgets/date_selection_widget.dart';
+import '../../../BottomNavigationBar/custom_app_bar.dart';
 
 class AttendanceTableScreen extends StatefulWidget {
   const AttendanceTableScreen({Key? key}) : super(key: key);
@@ -30,7 +28,6 @@ class _AttendanceTableScreenState extends State<AttendanceTableScreen> {
     return Scaffold(
         appBar: CustomAppBar(
           title: 'جدول الحضور',
-          onPress: () {},
         ),
         body: Directionality(
           textDirection: TextDirection.rtl,

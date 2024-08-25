@@ -18,9 +18,9 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _startLocationService();
-      getId().then((value) {
+  /*    getId().then((value) {
         _getCredentials();
-      });
+      });*/
     });
 
   }
@@ -68,12 +68,8 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-
-
   @override
   Widget build(BuildContext context) {
-
-
     return Scaffold(
       body: new HomeView()
     );

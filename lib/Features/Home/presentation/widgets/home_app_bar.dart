@@ -1,7 +1,9 @@
+import 'package:attendance_app_code/Base/common/navigtor.dart';
 import 'package:attendance_app_code/Base/common/shared_preference_manger.dart';
 import 'package:attendance_app_code/Base/common/theme.dart';
+import 'package:attendance_app_code/Features/Notifications/presentation/pages/notifications_screen.dart';
+import 'package:attendance_app_code/Features/Profile/presentation/pages/profile_screen.dart';
 import 'package:attendance_app_code/model/user.dart';
-import 'package:attendance_app_code/profilescreen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -24,13 +26,16 @@ class _HomeAppBarState extends State<HomeAppBar> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 5),
+      padding:  EdgeInsets.symmetric(vertical: Shared.width * 0.05, horizontal: 5),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
        IconButton(
-              onPressed: () {},
+              onPressed: () {
+                customAnimatedPushNavigation(context, NotificationsScreen());
+
+              },
               icon: ImageIcon(
                 AssetImage("assets/images/notification.png"),
                 color: kWhiteColor,
@@ -54,7 +59,7 @@ Container(),
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Text(
-                          'محمد على',
+                          '${ User.username}',
                           style: Styles.textStyle16.copyWith(
                               color: Colors.white, fontWeight: FontWeight.bold),
                         ),

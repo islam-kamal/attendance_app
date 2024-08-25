@@ -1,5 +1,6 @@
-import 'dart:async';
+import 'package:attendance_app_code/Base/Helper/app_event.dart';
 import 'package:attendance_app_code/Base/common/theme.dart';
+import 'package:attendance_app_code/Features/Home/presentation/bloc/registeration_bloc.dart';
 import 'package:attendance_app_code/model/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -20,8 +21,6 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  double screenHeight = 0;
-  double screenWidth = 0;
 
   String checkIn = "--/--";
   String checkOut = "--/--";
@@ -75,8 +74,6 @@ int status = 0;
 
   @override
   Widget build(BuildContext context) {
-    screenHeight = MediaQuery.of(context).size.height;
-    screenWidth = MediaQuery.of(context).size.width;
 
     return WillPopScope(
         onWillPop: ()async=>false,
@@ -125,17 +122,22 @@ int status = 0;
                         setState(() {
                           status = 0;
                         });
-                      }else if(currentTime.isBefore(startTime)){
+                      }
+                      else if(currentTime.isBefore(startTime)){
                         setState(() {
                           status = 1;
                         });
-                      }else if(currentTime.isAfter(startTime)){
+                      }
+                      else if(currentTime.isAfter(startTime)){
                         setState(() {
                           status = 2;
                         });
                       }
                       print("isInPeriod : ${isInPeriod}");
-                      if (User.lat != 0) {
+                      registerationBloc.add(ApplyRegisterationEvent(
+                        status: "in"
+                      ));
+                    /*  if (User.lat != 0) {
                         _getLocation();
                         QuerySnapshot snap = await FirebaseFirestore.instance
                             .collection("Employee")
@@ -248,7 +250,7 @@ int status = 0;
                           }
                           key.currentState?.reset();
                         });
-                      }
+                      }*/
                     },
                   );
 
