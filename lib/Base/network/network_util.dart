@@ -17,7 +17,7 @@ SharedPreferenceManager sharedPreferenceManager =SharedPreferenceManager();
 
 
   Future<ResponseType> get <ResponseType extends Mappable>(ResponseType responseType, String url,
-      {Map<String, dynamic>? headers}) async {
+      {Map<String, dynamic>? headers, var data}) async {
     Dio dio = new Dio();
     (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
         (HttpClient dioClient) {
@@ -34,7 +34,8 @@ SharedPreferenceManager sharedPreferenceManager =SharedPreferenceManager();
         options: Options(
           headers: headers,
           contentType: 'application/json',
-        )
+        ),
+        data: data
       );
     } on DioError catch (e) {
       if (e.response != null) {

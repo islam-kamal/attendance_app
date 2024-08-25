@@ -1,6 +1,6 @@
 import 'package:attendance_app_code/Base/common/theme.dart';
 import 'package:attendance_app_code/Features/Attendance_Table/presentation/pages/attendance_tabel_screen.dart';
-import 'package:attendance_app_code/Features/DiscountList/presentation/pages/discount_list_screen.dart';
+import 'package:attendance_app_code/Features/PenaltyList/presentation/pages/penalty_list_screen.dart';
 import 'package:attendance_app_code/Features/TaskTable/presentation/pages/tasks_table_screen.dart';
 import 'package:attendance_app_code/Features/Home/presentation/pages/homescreen.dart';
 import 'package:flutter/material.dart';
@@ -66,7 +66,7 @@ class _IndexScreenState extends State<IndexScreen> {
               padding: EdgeInsets.all(5),
               child:  ImageIcon(
                   AssetImage("assets/images/task.png"),
-                  color: current_index == 2 ? kGreenColor  : kBlackColor
+                  color: current_index == 1 ? kGreenColor  : kBlackColor
               ),
             )),
         title: ("جدول المهام"),
@@ -80,7 +80,7 @@ class _IndexScreenState extends State<IndexScreen> {
               padding: EdgeInsets.all(5),
               child:  ImageIcon(
                   AssetImage("assets/images/clipboard-close.png"),
-                  color: current_index == 3 ? kGreenColor  : kBlackColor
+                  color: current_index == 2 ? kGreenColor  : kBlackColor
               ),
             )),
         title: ("لائحة الخصم"),
@@ -94,7 +94,7 @@ class _IndexScreenState extends State<IndexScreen> {
               padding: EdgeInsets.all(5),
               child:  ImageIcon(
                   AssetImage("assets/images/user-tick.png"),
-                  color: current_index == 4 ? kGreenColor  : kBlackColor
+                  color: current_index == 3 ? kGreenColor  : kBlackColor
               ),
             )),
         title: ("الحضور"),
@@ -108,7 +108,7 @@ class _IndexScreenState extends State<IndexScreen> {
         HomeScreen(),
         //NotificationsScreen(),
         TasksTableScreen(),
-        DiscountListScreen(),
+        PenaltyListScreen(),
         AttendanceTableScreen(),
       ];
     }
@@ -123,7 +123,6 @@ class _IndexScreenState extends State<IndexScreen> {
 
          setState(() {
            current_index = index;
-           print("current_index: ${current_index}");
          });
       },
         items: _navBarsItems,

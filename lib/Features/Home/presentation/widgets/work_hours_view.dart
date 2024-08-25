@@ -54,8 +54,8 @@ class WorkHoursView extends StatelessWidget {
           ),
 */
           EmployeeAttendenceStatus(status: status),
-          const SizedBox(
-            height: 7,
+           SizedBox(
+            height: Shared.width * 0.05,
           ),
           location == ''
               ? Container()

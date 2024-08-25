@@ -8,7 +8,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../../../Base/common/navigtor.dart';
 import '../../../../Base/common/shared.dart';
 
@@ -40,7 +39,7 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Center(
         child: Image.asset("assets/images/reportLogo1.png"),
       ),
-    );
+     );
   }
 
   void _getCurrentUser() async {

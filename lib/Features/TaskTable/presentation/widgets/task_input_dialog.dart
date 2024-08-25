@@ -1,16 +1,23 @@
 import 'package:attendance_app_code/Base/common/theme.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:attendance_app_code/Features/TaskTable/data/data_sources/database/tasks_db.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart' as intl;
-import 'package:uuid/uuid.dart';
 
 import '../../../../Base/common/shared.dart';
-import '../../../../model/user.dart';
 
-class TaskInputDialog extends StatelessWidget{
+class TaskInputDialog extends StatefulWidget{
+  final void Function()? onTaskSaved;
+  TaskInputDialog({this.onTaskSaved});
+  @override
+  State<TaskInputDialog> createState() => _TaskInputDialogState();
+}
+
+class _TaskInputDialogState extends State<TaskInputDialog> {
   TextEditingController header_controller = new TextEditingController();
+
   TextEditingController description_controller = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Directionality(textDirection: TextDirection.rtl,
@@ -47,21 +54,13 @@ class TaskInputDialog extends StatelessWidget{
           actions: <Widget>[
             OutlinedButton(
               onPressed: () async {
-                // Do something with name and age
-                QuerySnapshot snap = await FirebaseFirestore.instance
-                    .collection("Employee")
-                    .where('id', isEqualTo: User.employeeId)
-                    .get();
-                await FirebaseFirestore.instance
-                    .collection("Employee")
-                    .doc(snap.docs[0].id)
-                    .collection("Tasks")
-                    .doc(Uuid().v4())
-                    .set({
-                  'date': Shared.task_selected_date, //Timestamp.now(),
-                  'header': header_controller.text,
-                  'description':description_controller.text,
-                  'status': false
+                TasksDatabase.saveTasks(
+                    header: header_controller.text?? '',
+                    description: description_controller.text ?? '',
+                    status: false,
+                    timeStamp: Shared.task_selected_date.toString()
+                ).whenComplete((){
+                  widget.onTaskSaved!.call();
                 });
                 Navigator.of(context).pop();
               },
@@ -81,5 +80,4 @@ class TaskInputDialog extends StatelessWidget{
         ));
 
   }
-
 }

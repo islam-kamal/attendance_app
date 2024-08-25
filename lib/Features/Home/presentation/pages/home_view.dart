@@ -7,9 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:intl/intl.dart';
 import 'package:slide_to_act/slide_to_act.dart';
-
 import '../../../../Base/common/shared.dart';
-import '../widgets/date_day_view.dart';
 import '../widgets/home_app_bar.dart';
 import '../widgets/work_hours_view.dart';
 
@@ -81,63 +79,66 @@ int status = 0;
         backgroundColor: kPrimaryColor,
         appBar: HomeAppBar(),
         body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            WorkHoursView(
-              color: Color.fromARGB(255, 168, 244, 228),
-              baseText: 'حضرت',
-              text: 'في الموعد المحدد',
-              textColor: Color(0xff01D9AC),
-              location: location,
-              checkIn: checkIn,
-              checkOut: checkOut,
-              status: status,
-            ),
 
-            Container(
-              margin: const EdgeInsets.symmetric(vertical: 15),
-              width: Shared.width * 0.85,
-              child: Builder(
-                builder: (context) {
-                  GlobalKey<SlideActionState> key = GlobalKey();
-                  return SlideAction(
-                    text: checkIn == "--/--"
-                        ? "اسحب لتسجيل الحضور"
-                        : "اسحب لتسجيل الانصراف",
-                    textStyle: TextStyle(
-                        color: Colors.black54,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18),
-                    outerColor: Colors.white,
-                    innerColor: kPrimaryColor,
-                    key: key,
-                    height: Shared.width * 0.15,
-                    sliderButtonIconSize: Shared.width * 0.04,
-                    onSubmit: () async {
-                      DateTime startTime = DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day, 23, 24); // 9:00 AM
-                      DateTime endTime = DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day, 23, 25); // 5:00 PM
-                      DateTime currentTime = DateTime.now();
-                      bool isInPeriod = currentTime.isAfter(startTime) && currentTime.isBefore(endTime);
-                      print("isInPeriod : ${isInPeriod}");
-                      if(currentTime.isAfter(startTime) && currentTime.isBefore(endTime)){
-                        setState(() {
-                          status = 0;
-                        });
-                      }
-                      else if(currentTime.isBefore(startTime)){
-                        setState(() {
-                          status = 1;
-                        });
-                      }
-                      else if(currentTime.isAfter(startTime)){
-                        setState(() {
-                          status = 2;
-                        });
-                      }
-                      print("isInPeriod : ${isInPeriod}");
-                      registerationBloc.add(ApplyRegisterationEvent(
-                        status: "in"
-                      ));
-                    /*  if (User.lat != 0) {
+                WorkHoursView(
+                  color: Color.fromARGB(255, 168, 244, 228),
+                  baseText: 'حضرت',
+                  text: 'في الموعد المحدد',
+                  textColor: Color(0xff01D9AC),
+                  location: location,
+                  checkIn: checkIn,
+                  checkOut: checkOut,
+                  status: status,
+                ),
+
+                Container(
+                  margin:  EdgeInsets.symmetric(vertical: Shared.width * 0.2),
+                  width: Shared.width * 0.85,
+                  child: Builder(
+                    builder: (context) {
+                      GlobalKey<SlideActionState> key = GlobalKey();
+                      return SlideAction(
+                        text: checkIn == "--/--"
+                            ? "اسحب لتسجيل الحضور"
+                            : "اسحب لتسجيل الانصراف",
+                        textStyle: TextStyle(
+                            color: Colors.black54,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18),
+                        outerColor: Colors.white,
+                        innerColor: kPrimaryColor,
+                        key: key,
+                        height: Shared.width * 0.15,
+                        sliderButtonIconSize: Shared.width * 0.04,
+                        onSubmit: () async {
+                          DateTime startTime = DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day, 23, 24); // 9:00 AM
+                          DateTime endTime = DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day, 23, 25); // 5:00 PM
+                          DateTime currentTime = DateTime.now();
+                          bool isInPeriod = currentTime.isAfter(startTime) && currentTime.isBefore(endTime);
+                          print("isInPeriod : ${isInPeriod}");
+                          if(currentTime.isAfter(startTime) && currentTime.isBefore(endTime)){
+                            setState(() {
+                              status = 0;
+                            });
+                          }
+                          else if(currentTime.isBefore(startTime)){
+                            setState(() {
+                              status = 1;
+                            });
+                          }
+                          else if(currentTime.isAfter(startTime)){
+                            setState(() {
+                              status = 2;
+                            });
+                          }
+                          print("isInPeriod : ${isInPeriod}");
+                          registerationBloc.add(ApplyRegisterationEvent(
+                              status: "in"
+                          ));
+                          /*  if (User.lat != 0) {
                         _getLocation();
                         QuerySnapshot snap = await FirebaseFirestore.instance
                             .collection("Employee")
@@ -251,16 +252,17 @@ int status = 0;
                           key.currentState?.reset();
                         });
                       }*/
+                        },
+                      );
+
+
                     },
-                  );
+                  ),
+                ),
 
 
-                },
-              ),
-            ),
-
-            Expanded(
-                child:  DatesDayView()),
+  /*          Expanded(
+                child:  DatesDayView()),*/
           ],
         ),
         ));

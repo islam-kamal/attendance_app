@@ -1,3 +1,4 @@
+import 'package:attendance_app_code/Base/common/shared.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,16 +14,16 @@ class _SliderSimmerState extends State<SliderSimmer> {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       designSize:  Size(
-          ScreenUtil().screenWidth, ScreenUtil().screenHeight),
+          Shared.width, Shared.height),
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context , child) {
         return Shimmer.fromColors(
-          baseColor: kGreenColor,
+          baseColor: Colors.grey[350]!,
           highlightColor: Colors.grey[350]!,
           child: Container(
-            height: 100.h,
-            width: ScreenUtil().screenWidth,
+            height:Shared.height,
+            width: Shared.width ,
             decoration: BoxDecoration(
                 color: kGreenColor, borderRadius: BorderRadius.circular(10.0)),
           ),

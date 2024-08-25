@@ -18,3 +18,14 @@ class ApplyRegisterationEvent extends AppEvent{
 
   ApplyRegisterationEvent({required this.status});
 }
+
+class GetAttendanceEvent extends AppEvent{
+  final int  offset;
+
+  GetAttendanceEvent({required this.offset});
+}
+class GetPenaltyEvent extends AppEvent{
+  final int  offset;
+
+  GetPenaltyEvent({required this.offset});
+}
