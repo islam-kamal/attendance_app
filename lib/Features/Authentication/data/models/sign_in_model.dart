@@ -6,15 +6,20 @@ class SiginModel extends BaseMappable{
   var accessToken;
  var error;
  var code;
+  WorkTime? workTime;
  var message;
-  SiginModel({this.user, this.accessToken,this.error,this.message,this.code});
+  SiginModel({this.user, this.accessToken,this.error,  this.workTime,this.message,this.code});
 
   SiginModel.fromJson(Map<String, dynamic> json) {
+
     user = json['user'] != null ? User.fromJson(json['user']) : null;
     accessToken = json['access_token'];
     error = json['error'];
     code = json['code'];
     message = json['message'];
+    workTime = json['work_time'] != null
+        ? new WorkTime.fromJson(json['work_time'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -26,6 +31,9 @@ class SiginModel extends BaseMappable{
     data['error'] = this.error;
     data['code'] = this.code;
     data['message'] = this.message;
+    if (this.workTime != null) {
+      data['work_time'] = this.workTime!.toJson();
+    }
     return data;
   }
 
@@ -36,7 +44,10 @@ class SiginModel extends BaseMappable{
     error = json['error'];
     code = json['code'];
     message = json['message'];
-    return SiginModel(user: user,accessToken: accessToken,message: message,error: error,code: code);
+    workTime = json['work_time'] != null
+        ? new WorkTime.fromJson(json['work_time'])
+        : null;
+    return SiginModel(user: user,accessToken: accessToken,message: message,error: error,code: code,workTime: workTime);
   }
 }
 
@@ -491,6 +502,71 @@ class Pivot {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['user_id'] = userId;
     data['role_id'] = roleId;
+    return data;
+  }
+}
+class WorkTime {
+  int? id;
+  String? start;
+  String? end;
+  int? flag;
+  String? deletedAt;
+  String? createdAt;
+  String? updatedAt;
+  int? staffId;
+
+  WorkTime(
+      {this.id,
+        this.start,
+        this.end,
+        this.flag,
+        this.deletedAt,
+        this.createdAt,
+        this.updatedAt,
+        this.staffId});
+
+  WorkTime.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    start = json['start'];
+    end = json['end'];
+    flag = json['flag'];
+    deletedAt = json['deleted_at'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
+    staffId = json['staff_id'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['start'] = this.start;
+    data['end'] = this.end;
+    data['flag'] = this.flag;
+    data['deleted_at'] = this.deletedAt;
+    data['created_at'] = this.createdAt;
+    data['updated_at'] = this.updatedAt;
+    data['staff_id'] = this.staffId;
+    return data;
+  }
+}
+
+class Token {
+  String? accessToken;
+  Token? token;
+
+  Token({this.accessToken, this.token});
+
+  Token.fromJson(Map<String, dynamic> json) {
+    accessToken = json['accessToken'];
+    token = json['token'] != null ? new Token.fromJson(json['token']) : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['accessToken'] = this.accessToken;
+    if (this.token != null) {
+      data['token'] = this.token!.toJson();
+    }
     return data;
   }
 }

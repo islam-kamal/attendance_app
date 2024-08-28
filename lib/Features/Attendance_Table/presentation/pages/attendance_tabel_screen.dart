@@ -31,7 +31,7 @@ class _AttendanceTableScreenState extends State<AttendanceTableScreen> {
   @override
   void initState() {
     super.initState();
-    attendanceBloc.add(GetAttendanceEvent(offset: 1));
+   // attendanceBloc.add(GetAttendanceEvent(offset: 1));
   }
 
   @override

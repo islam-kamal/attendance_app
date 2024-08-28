@@ -29,3 +29,5 @@ class GetPenaltyEvent extends AppEvent{
 
   GetPenaltyEvent({required this.offset});
 }
+
+class GetNotificationsEvent extends AppEvent{}

@@ -1,6 +1,7 @@
 
 import 'package:attendance_app_code/Features/Attendance_Table/data/models/attendence_model.dart';
 import 'package:attendance_app_code/Features/Home/data/models/registeration_model.dart';
+import 'package:attendance_app_code/Features/Notifications/data/models/notification_model.dart';
 import 'package:attendance_app_code/Features/PenaltyList/data/models/penalty_model.dart';
 
 abstract class AppState {
@@ -51,4 +52,12 @@ class GetPenaltyErrorLoading extends AppState{
   final String? message;
   GetPenaltyErrorLoading({this.message});
 }
+class GetNotificationsDone extends AppState{
+  final NotificationModel? notificationModel;
+  GetNotificationsDone({this.notificationModel});
+}
 
+class GetNotificationsErrorLoading extends AppState{
+  final String? message;
+  GetNotificationsErrorLoading({this.message});
+}

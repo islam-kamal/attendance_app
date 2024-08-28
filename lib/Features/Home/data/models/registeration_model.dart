@@ -55,8 +55,8 @@ class Data {
     attendanceDate = json['attendance_date'];
     register_in = json['in'];
     register_out = json['out'];
-    lateHours = json['late_hours'];
-    lateMin = json['late_min'];
+    lateHours = int.parse(json['late_hours'].toString());
+    lateMin = int.parse(json['late_min'].toString());
     deletedAt = json['deleted_at'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];

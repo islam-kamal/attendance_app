@@ -96,6 +96,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                        sharedPreferenceManager.removeData(CachingKey.AUTH_TOKEN);
                        sharedPreferenceManager.removeData(CachingKey.USER_NAME);
                        sharedPreferenceManager.removeData(CachingKey.USER_ID);
+                       sharedPreferenceManager.removeData(CachingKey.EMAIL);
+                       sharedPreferenceManager.removeData(CachingKey.MOBILE_NUMBER);
+                       sharedPreferenceManager.removeData(CachingKey.START_TIME);
+                       sharedPreferenceManager.removeData(CachingKey.END_TIME);
                        customAnimatedPushNavigation(
                            navigatorKey.currentContext!, LoginScreen());
                      },

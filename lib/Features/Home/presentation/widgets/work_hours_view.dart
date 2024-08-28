@@ -30,29 +30,6 @@ class WorkHoursView extends StatelessWidget {
     return Center(
       child: Column(
         children: [
-       /*   StreamBuilder(
-            stream: Stream.periodic(const Duration(seconds: 1)),
-            builder: (context, snapshot) {
-              return Container(
-                alignment: Alignment.center,
-                child: Text(
-                  '${DateFormat('hh:mm a').format(DateTime.now())}',
-                  style: Styles.textStyle24.copyWith(color: Colors.white),
-                ),
-              );
-            },
-          ),
-          Opacity(
-            opacity: 0.9,
-            child: Text(
-              "${DateFormat('EEEE dd MMMM', 'ar').format(DateTime.now())}", //  'الاثنين 01 نوفمبر',
-              style: Styles.textStyle14.copyWith(color: Colors.white),
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-*/
           EmployeeAttendenceStatus(status: status),
            SizedBox(
             height: Shared.width * 0.05,
@@ -85,8 +62,8 @@ class WorkHoursView extends StatelessWidget {
                     ],
                   ),
                 ),
-          const SizedBox(
-            height: 10,
+           SizedBox(
+            height: Shared.width * 0.05,
           ),
           WorkDetailsView(
             checkIn: checkIn,

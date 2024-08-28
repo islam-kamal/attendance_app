@@ -36,35 +36,11 @@ class WorkDetailsView extends StatelessWidget{
                   ),
               ],
             ),
+
             Column(
               children: [
                 Image.asset(
-                 'assets/images/afternoon.png',
-                  color: Colors.white,
-                ),
-                const SizedBox(
-                  height: 7,
-                ),
-                Text(
-                  checkIn, //  '07:00',
-                  style: Styles.textStyle14.copyWith(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold
-                  ),
-                ),
-                Text(
-                  'وقت الحضور',
-                  style: Styles.textStyle14.copyWith(
-                    color: Colors.white,
-                    fontSize: 12,
-                  ),
-                ),
-              ],
-            ),
-            Column(
-              children: [
-                Image.asset(
-                  'assets/images/clock.png',
+                  'assets/images/afternoon.png',
                   color: Colors.white,
                 ),
                 const SizedBox(
@@ -86,7 +62,31 @@ class WorkDetailsView extends StatelessWidget{
                   ),
               ],
             ),
-
+            Column(
+              children: [
+                Image.asset(
+                  'assets/images/clock.png',
+                  color: Colors.white,
+                ),
+                const SizedBox(
+                  height: 7,
+                ),
+                Text(
+                  checkIn, //  '07:00',
+                  style: Styles.textStyle14.copyWith(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold
+                  ),
+                ),
+                Text(
+                  'وقت الحضور',
+                  style: Styles.textStyle14.copyWith(
+                    color: Colors.white,
+                    fontSize: 12,
+                  ),
+                ),
+              ],
+            ),
           ],
          );
   }

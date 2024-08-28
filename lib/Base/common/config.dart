@@ -7,4 +7,5 @@ const String loginUrl = "/login";
 const String registerationUrl = "/hr/attendances";
 const String getAttendaceUrl = "/hr/attendances";
 const String getPenaltiesUrl = "/hr/penalties";
+const String getNotificationsUrl = "/hr/get-notification";
 

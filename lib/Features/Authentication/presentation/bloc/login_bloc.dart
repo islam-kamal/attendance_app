@@ -21,13 +21,17 @@ class LoginBloc extends Bloc<AppEvent,AppState> with Validator {
     );
 
     if (response.accessToken != null) {
+      print("response.workTime?.start!.toString() : ${response.workTime?.start!.toString()}");
      User.username =  response.user!.fullName!.toString();
       sharedPreferenceManager.writeData(CachingKey.AUTH_TOKEN, response.accessToken!);
       sharedPreferenceManager.writeData(CachingKey.USER_ID, response.user?.id!);
       sharedPreferenceManager.writeData(CachingKey.USER_NAME, response.user?.fullName!.toString());
      sharedPreferenceManager.writeData(CachingKey.EMAIL, response.user?.email!.toString());
      sharedPreferenceManager.writeData(CachingKey.MOBILE_NUMBER, response.user?.phone!.toString());
-      print("accessToken : ${response.accessToken}");
+     sharedPreferenceManager.writeData(CachingKey.START_TIME, response.workTime?.start!.toString());
+     sharedPreferenceManager.writeData(CachingKey.END_TIME, response.workTime?.end!.toString());
+
+     print("accessToken : ${response.accessToken}");
 
       emit(Done());
     } else {

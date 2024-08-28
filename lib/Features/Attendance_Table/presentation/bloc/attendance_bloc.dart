@@ -14,15 +14,20 @@ class AttendanceBloc extends Bloc<AppEvent,AppState> with Validator {
   Future<void> _onGetAttendanceDataClick(GetAttendanceEvent event,
       Emitter<AppState> emit) async {
     emit(Loading());
-    var response = await attendanceRepository.getAttendanceData(
-      offset: event.offset
-    );
-    if (response!.success! ) {
-      emit(GetAttendanceDone(attendanceModel: response));
-    } else {
-      emit(GetAttendanceErrorLoading(message: response.message));
+    try {
+      var response = await attendanceRepository.getAttendanceData(
+          offset: event.offset
+      );
+      if (response!.success!) {
+        emit(GetAttendanceDone(attendanceModel: response));
+      } else {
+        emit(GetAttendanceErrorLoading(message: response.message));
+      }
+    } catch (e) {
+      emit(GetAttendanceErrorLoading(message: e.toString()));
     }
   }
+
 }
 
 AttendanceBloc attendanceBloc = new AttendanceBloc();
