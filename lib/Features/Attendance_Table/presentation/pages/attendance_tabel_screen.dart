@@ -56,6 +56,17 @@ class _AttendanceTableScreenState extends State<AttendanceTableScreen> {
     }
   }
 
+  DateTime _parseTime(String time) {
+    final parts = time.split(":");
+    return DateTime(
+      DateTime.now().year,
+      DateTime.now().month,
+      DateTime.now().day,
+      int.parse(parts[0]),
+      int.parse(parts[1]),
+    );
+  }
+
   Widget _buildDateTable(List<DateTime> days, AttendanceModel? attendanceModel) {
     if (attendanceModel == null || attendanceModel.data?.attendance?.isEmpty == true) {
       return Center(child: Text("لا توجد سجلات حاليا"));
@@ -75,26 +86,26 @@ class _AttendanceTableScreenState extends State<AttendanceTableScreen> {
     }
 
     return Padding(
-      padding: EdgeInsets.all(10),
+      padding: EdgeInsets.symmetric(vertical: 10,horizontal: 5),
       child: Material(
-        elevation: 5,
+        elevation: 0,
         borderRadius: BorderRadius.circular(10),
         child: Container(
-          margin: EdgeInsets.symmetric(horizontal: 5),
-          alignment: Alignment.center,
-          height: Shared.width * 0.12,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            border: Border.all(color: kWhiteColor),
-          ),
-          child:  DataTable(
+  height: Shared.height * 0.65, // Set a fixed height for vertical scrolling (adjust as needed)
+        margin: EdgeInsets.symmetric(horizontal: 0),
+
+        child: SingleChildScrollView(
+    scrollDirection: Axis.vertical, // Vertical scrolling
+    child:  Card(
+    elevation: 4, // Set the elevation here
+    child: DataTable(
             columnSpacing: Shared.width * 0.02,
             horizontalMargin: 0,
             columns: _buildDataColumns(),
             rows: _buildDataRows(filteredDays, attendanceModel),
-          ),
+    )  )) ),
         ),
-      ),
+
     );
   }
 
@@ -174,6 +185,7 @@ class _AttendanceTableScreenState extends State<AttendanceTableScreen> {
               borderRadius: BorderRadius.circular(10),
               color: _getCellColor(record),
             ),
+            margin: EdgeInsets.symmetric(horizontal: 5),
             height: 30,
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 20),
@@ -190,16 +202,6 @@ class _AttendanceTableScreenState extends State<AttendanceTableScreen> {
     });
   }
 
-  DateTime _parseTime(String time) {
-    final parts = time.split(":");
-    return DateTime(
-      DateTime.now().year,
-      DateTime.now().month,
-      DateTime.now().day,
-      int.parse(parts[0]),
-      int.parse(parts[1]),
-    );
-  }
 
   Color _getCellColor(Attendance record) {
     if (record.registerIn != null || record.registerOut != null) {
@@ -276,9 +278,9 @@ class _AttendanceTableScreenState extends State<AttendanceTableScreen> {
                       );
                     } else if (state is GetAttendanceDone) {
                       return _buildDateTable(_getDaysInMonth(
-                          int.parse(year),
-                          intl.DateFormat('MMMM').parse(selectedMonth).month),
-                          state.attendanceModel);
+                            int.parse(year),
+                            intl.DateFormat('MMMM').parse(selectedMonth).month),
+                            state.attendanceModel);
                     } else if (state is GetAttendanceErrorLoading) {
                       return Center(child: Text("${state.message}"));
                     }
